@@ -13,134 +13,57 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <style>
-        /* Estilos para replicar exactamente la imagen de accesibilidad */
+        /* Panel de Accesibilidad basado fielmente en tu imagen */
         .acc-panel-sidebar {
-            position: fixed;
-            left: -320px;
-            top: 0;
-            width: 300px;
-            height: 100vh;
-            background: #E0E0E0;
-            z-index: 9999;
-            transition: 0.3s;
-            padding: 20px 10px;
+            position: fixed; left: -320px; top: 0; width: 300px; height: 100vh;
+            background: #EAEAEA; z-index: 9999; transition: 0.3s;
+            padding: 20px; font-family: 'Montserrat', sans-serif;
             box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-            font-family: 'Montserrat', sans-serif;
         }
         .acc-panel-sidebar.active { left: 0; }
-        
         .acc-trigger-btn {
-            position: fixed;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #9D2449;
-            color: white;
-            padding: 15px 10px;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            z-index: 10000;
+            position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+            background: #9D2449; color: white; padding: 15px 10px;
+            border-radius: 0 5px 5px 0; cursor: pointer; z-index: 10000;
         }
-
-        .acc-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            cursor: pointer;
-            color: #B37185;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
+        .acc-item { display: flex; align-items: center; margin-bottom: 12px; cursor: pointer; color: #B37185; font-size: 14px; font-weight: 600; }
         .acc-icon-box {
-            width: 50px;
-            height: 50px;
-            background: #C28497;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: white;
-            font-size: 24px;
+            width: 45px; height: 45px; background: #C28497; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 15px; color: white; font-size: 20px;
         }
-
-        /* Botón Restablecer (Superior) */
         .acc-reset-btn {
-            background: #9D2449;
-            color: white;
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            cursor: pointer;
-            font-weight: bold;
+            background: #9D2449; color: white; display: flex; align-items: center;
+            padding: 12px; border-radius: 8px; margin-bottom: 25px; cursor: pointer; font-weight: bold;
         }
-
-        /* Clases de apoyo para las funciones */
-        .dyslexic { font-family: 'OpenDyslexic', sans-serif !important; }
-        .grayscale { filter: grayscale(100%) !important; }
-        .high-contrast { background: black !important; color: yellow !important; }
-        .large-cursor { cursor: url('https://cur.cursors-4u.net/arrows/arr-2/arr133.cur'), auto !important; }
+        /* Funciones visuales */
+        .dyslexic-mode { font-family: 'OpenDyslexic', sans-serif !important; }
+        .grayscale-mode { filter: grayscale(100%); }
+        .contrast-mode { filter: contrast(150%) brightness(90%); }
     </style>
 </head>
 
 <body ng-app="documentos">
-
-    <div class="acc-trigger-btn" onclick="toggleAccPanel()"><i class="fas fa-universal-access fa-2x"></i></div>
+    <div class="acc-trigger-btn" onclick="document.getElementById('accPanel').classList.toggle('active')">
+        <i class="fas fa-universal-access fa-2x"></i>
+    </div>
     
     <div id="accPanel" class="acc-panel-sidebar">
-        <div class="acc-reset-btn" onclick="resetAllAcc()">
-            <div style="margin-right: 15px;"><i class="fas fa-undo-alt"></i></div>
-            Restablecer
-        </div>
-
-        <div class="acc-item" onclick="toggleGrayscale()">
-            <div class="acc-icon-box"><i class="fas fa-adjust"></i></div>
-            Cambiar escala de grises
-        </div>
-
-        <div class="acc-item">
-            <div class="acc-icon-box"><i class="fas fa-ear-listen"></i></div>
-            Usar un lector de pantalla
-        </div>
-
-        <div class="acc-item" onclick="toggleCursor()">
-            <div class="acc-icon-box"><i class="fas fa-mouse-pointer"></i></div>
-            Cambiar tamaño de cursor
-        </div>
-
-        <div class="acc-item" onclick="toggleContrast()">
-            <div class="acc-icon-box"><i class="fas fa-palette"></i></div>
-            Cambiar el contraste de color
-        </div>
-
-        <div class="acc-item">
-            <div class="acc-icon-box"><i class="fas fa-equals"></i></div>
-            Mascara de lectura
-        </div>
-
-        <div class="acc-item">
-            <div class="acc-icon-box"><i class="fas fa-underline"></i></div>
-            Guia de Lectura
-        </div>
-
-        <div class="acc-item" onclick="toggleDyslexia()">
-            <div class="acc-icon-box"><i class="fas fa-italic"></i></div>
-            Cambio de tipografia dislexia
-        </div>
-
-        <div class="acc-item">
-            <div class="acc-icon-box"><i class="fas fa-arrows-alt-v"></i></div>
-            Espaciado vertical
-        </div>
+        <div class="acc-reset-btn" onclick="resetAcc()"><i class="fas fa-undo-alt" style="margin-right:15px"></i> Restablecer</div>
+        <div class="acc-item" onclick="document.body.classList.toggle('grayscale-mode')"><div class="acc-icon-box"><i class="fas fa-adjust"></i></div> Cambiar escala de grises</div>
+        <div class="acc-item"><div class="acc-icon-box"><i class="fas fa-ear-listen"></i></div> Usar un lector de pantalla</div>
+        <div class="acc-item"><div class="acc-icon-box"><i class="fas fa-mouse-pointer"></i></div> Cambiar tamaño de cursor</div>
+        <div class="acc-item" onclick="document.body.classList.toggle('contrast-mode')"><div class="acc-icon-box"><i class="fas fa-palette"></i></div> Cambiar el contraste de color</div>
+        <div class="acc-item"><div class="acc-icon-box"><i class="fas fa-equals"></i></div> Mascara de lectura</div>
+        <div class="acc-item"><div class="acc-icon-box"><i class="fas fa-underline"></i></div> Guia de Lectura</div>
+        <div class="acc-item" onclick="document.body.classList.toggle('dyslexic-mode')"><div class="acc-icon-box"><i class="fas fa-italic"></i></div> Cambio de tipografia dislexia</div>
+        <div class="acc-item"><div class="acc-icon-box"><i class="fas fa-arrows-alt-v"></i></div> Espaciado vertical</div>
     </div>
 
     <div id="div-sub-navbar"></div>
 
     <div>
-        <img class="img-background" src="images/bnr_documentos.png" style="width: 100%;">
+        <img class="img-background" src="images/bnr_documentos.png">
     </div>
 
     <div class="container container-top">
@@ -153,97 +76,143 @@
     </div>
 
     <div class="container bc_title" style="margin-top: 0vh; margin-bottom: -3vh">
-        <div class="row">
-            <div class="col-sm-8">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="index.html#consultas">Consultas</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Documentos académicos electrónicos</a></li>
-                </ol>
+            <div class="row">
+                <div class="col-sm-8">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="index.html#consultas">Consultas</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="#">Documentos académicos electrónicos</a></li>
+                    </ol>
+                </div>
             </div>
-        </div>
-    </div>  
+        </div>  
     <br>
+    <main id="search" ng-controller="documentosController">
 
-    <main id="search">
-        <div class="container container-form mt-2">
-            <form class="form" onsubmit="event.preventDefault(); buscarFolio();">
+        <div class="container container-form mt-2" >
+            <form class="form" id="mainForm">
                 <div class="row">
                     <div class="column col-lg-6">
-                      <div class="form-group mb-2">
+                      <div class="form-group  mb-2">
                         <label for="folio" class="sr-only">Folio</label>
-                        <input id="folio" type="text" placeholder="Ingrese el folio" class="form-control mt-3" required style="text-transform: uppercase;">
+                        <input id="folio" type="text" placeholder="Ingrese el folio"
+                                class="form-control mt-3"
+                                required
+                                ng-model="folio" >
                       </div>
                     </div>
                     <div class="column col-lg-3 col-md-6 col-sm-6">
                         <button id="btn-buscar" type="submit" class="btn btn-active btn-width mt-2">Buscar</button>
                     </div>
                     <div class="column col-lg-3 col-md-6 col-sm-6">
-                        <button id="btn-restablecer" type="reset" class="btn btn-secondary active btn-width mt-2" onclick="location.reload();">Restablecer</button>
+                        <button id="btn-restablecer" type="reset" class="btn btn-secondary active btn-width mt-2" 
+                                    onclick="location.reload();">Restablecer</button>
                     </div>
                 </div>
             </form>
             <div class="mt-3">
-                <a href="archivos/UbicaFolio.pdf" class="btn-link link-color" target="_blank">Ubica el folio en tu certificado</a>
+                <a href="archivos/UbicaFolio.pdf" class="btn-link link-color" target="_blank" title="Ubica el folio en tu certificado">Ubica el folio en tu certificado
+                </a>
             </div>
         </div>
 
-        <div class="container" id="sectionResultWithoutData" style="display:none; margin-top: 30px;">
-            <div class="top-buffer-submenu">
-                <p class="titulo_subtexto">Información no encontrada</p>
-                <hr class="red">
-                <div class="alert alert-danger">
-                    <p><b>La información solicitada no se encuentra en nuestros registros.</b></p>
-                    <p>Verifica los datos que ingresaste y vuelve a intentarlo.</p>
+        <div class="container" id="divResultsWithoutData">
+            <section id="sectionResultWithoutData" style="display:none;">
+                <div data-role="page" >
+                    <div class="top-buffer-submenu">
+                        <p class="titulo_subtexto" title="Información no encontrada">Información no encontrada</p>
+                        <hr class="red">
+                        <section style="margin: 20px;">
+                            <div class="alert alert-danger" >
+                                <p title="La información solicitada no se encuentra en nuestros registros"><b>La información solicitada no se encuentra en nuestros registros.</b></p>
+                                <br>
+                                <p title="Verifica los datos que ingresaste y vuelve a intentarlo.">Verifica los datos que ingresaste y vuelve a intentarlo.</p>
+                                <br>
+                                <button class="btn btn-danger bnt-nvo-intento" type="button" onclick="location.reload();">Volver a intentarlo</button>
+                            </div>
+                        </section>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
 
-        <div class="container" id="sectionResultWithData" style="display:none; margin-top: 5vh;">
-            <p class="titulo_subtexto"><span>Detalle del documento</span></p>
-            <hr class="red">
-            <div id="res-content" class="row align-items-start">
+       <div class="container" id="divResultsWithData">
+            <section id="sectionResultWithData" style="display:none; margin-top: 5vh ">
+                <div class="mb-5">
+                    <div class="row">
+                        <div class="column col-12">
+                            <p class="titulo_subtexto" id="detalle" title="Detalle del documento"><span>Detalle del documento</span></p>
+                            <hr class="red">
+                        </div>
+                    </div>
+                    <div class="row align-items-start" >
+                        <div class="column col-lg-3 col-md-12 mb-3"><b>Nombre:</b></div>
+                        <div class="column col-lg-9 col-md-12 mb-3"><span id="out-nombre"></span></div>
+
+                        <div class="column col-lg-3 col-md-12 mb-3"><b>Tipo de estudios:</b></div>
+                        <div class="column col-lg-9 col-md-12 mb-3"><span id="out-plan"></span></div>
+                        
+                        <div class="column col-lg-3 col-md-12 mb-3"><b>Folio:</b></div>
+                        <div class="column col-lg-9 col-md-12 mb-3"><span id="out-folio"></span></div>
+
+                        <div class="column col-lg-3 col-md-12 mb-3"><b>Autoridad emisora:</b></div>
+                        <div class="column col-lg-9 col-md-12 mb-3"><span id="out-emisor"></span></div>
+
+                        <div class="column col-lg-3 col-md-12 mb-3"><b>Fecha de registro:</b></div>
+                        <div class="column col-lg-9 col-md-12 mb-3"><span id="out-fecha"></span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 alert alert-success text-center">
+                            <h5><b>Promedio:</b></h5>
+                            <p><span id="out-promedio"></span></p>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3 alert alert-info text-center">
+                            <h5><b>Estatus:</b></h5>
+                            <h5><span id="out-estatus"></span></h5>
+                        </div>
+                    </div>
                 </div>
+            </section>
         </div>
     </main>
 
     <script src="folios.js"></script>
     <script>
-        // Funciones de Accesibilidad
-        function toggleAccPanel() {
-            document.getElementById('accPanel').classList.toggle('active');
-        }
-
-        function resetAllAcc() {
-            document.body.className = '';
-            document.body.style.filter = '';
-        }
-
-        function toggleGrayscale() { document.body.classList.toggle('grayscale'); }
-        function toggleDyslexia() { document.body.classList.toggle('dyslexic'); }
-        function toggleContrast() { document.body.classList.toggle('high-contrast'); }
-        function toggleCursor() { document.body.classList.toggle('large-cursor'); }
-
-        // Lógica de búsqueda original
-        function buscarFolio() {
-            const f = document.getElementById('folio').value.trim().toUpperCase();
-            const conDatos = document.getElementById('sectionResultWithData');
-            const sinDatos = document.getElementById('sectionResultWithoutData');
+        function resetAcc() { document.body.className = ''; document.body.style.filter = 'none'; }
+        
+        document.getElementById('mainForm').onsubmit = function(e) {
+            e.preventDefault();
+            var f = document.getElementById('folio').value.trim().toUpperCase();
+            var res = document.getElementById('sectionResultWithData');
+            var err = document.getElementById('sectionResultWithoutData');
             
+            res.style.display = 'none';
+            err.style.display = 'none';
+
             if (window.baseDatos && window.baseDatos[f]) {
-                const d = window.baseDatos[f];
-                sinDatos.style.display = 'none';
-                conDatos.style.display = 'block';
-                document.getElementById('res-content').innerHTML = `
-                    <div class="col-12 mb-3"><b>Nombre:</b> ${d.nombre}</div>
-                    <div class="col-12 mb-3"><b>Folio:</b> ${f}</div>
-                    <div class="col-12 mb-3"><b>Estatus:</b> <span class="badge badge-success">${d.estatus}</span></div>
-                `;
+                var d = window.baseDatos[f];
+                document.getElementById('out-nombre').innerText = d.nombre || d.nombres;
+                document.getElementById('out-plan').innerText = d.plan || d.tipoCertificacion;
+                document.getElementById('out-folio').innerText = f;
+                document.getElementById('out-emisor').innerText = (d.plantel || d.institucion);
+                document.getElementById('out-fecha').innerText = d.timbrado || d.fechaCertificado;
+                document.getElementById('out-promedio').innerText = d.promedio;
+                document.getElementById('out-estatus').innerText = d.estatus;
+                res.style.display = 'block';
             } else {
-                conDatos.style.display = 'none';
-                sinDatos.style.display = 'block';
+                err.style.display = 'block';
             }
-        }
+        };
+
+        window.onload = function() {
+            var params = new URLSearchParams(window.location.search);
+            var fQR = params.get('folio');
+            if (fQR) {
+                document.getElementById('folio').value = fQR.toUpperCase();
+                document.getElementById('btn-buscar').click();
+            }
+        };
     </script>
 </body>
 </html>

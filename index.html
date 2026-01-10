@@ -1,233 +1,189 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Certificación Electrónica | SEMS</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <title>SEP | SIGED</title>
+    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
+    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/images/favicon.ico" rel="shortcut icon">
+    <link href="https://framework-gb.cdn.gob.mx/gm/accesibilidad/css/gobmx-accesibilidad.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/navbar-settings.css">   
+    <link rel="stylesheet" type="text/css" href="css/global_siged.css"> 
+    <link rel="stylesheet" type="text/css" href="css/documentos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    
+
     <style>
-        :root {
-            --gob-guinda: #621132; 
-            --gob-guinda-claro: #9D2449;
-            --gob-oro: #9D843E;   
-            --gob-verde-oscuro: #11322B; 
-            --gob-gris-boton: #757575;   
-            --gob-verde-exito: #28a745;
-            --gob-rojo-error: #D32F2F;
-            /* Colores Menú Accesibilidad */
-            --acc-bg: #EAEAEA;
-            --acc-pink: #B37185;
-            --acc-dark-pink: #912849;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Lora', serif;
-            background-color: #f4f4f4;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100'%3E%3Cpath d='M0 0l50 50L0 100' stroke='%23d8d8d8' fill='none' stroke-width='1'/%3E%3Cpath d='M100 0L50 50l50 50' stroke='%23d8d8d8' fill='none' stroke-width='1'/%3E%3C/svg%3E");
-            background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            transition: filter 0.3s;
-        }
-
-        /* --- MENÚ ACCESIBILIDAD --- */
-        .acc-trigger { position: fixed; left: 0; top: 50%; transform: translateY(-50%); background: var(--acc-dark-pink); color: white; padding: 15px 8px; border-radius: 0 5px 5px 0; cursor: pointer; z-index: 1001; box-shadow: 2px 0 10px rgba(0,0,0,0.2); }
-        #acc-panel { position: fixed; left: -320px; top: 0; width: 300px; height: 100vh; background: var(--acc-bg); z-index: 1000; transition: 0.4s ease-in-out; box-shadow: 5px 0 15px rgba(0,0,0,0.3); overflow-y: auto; padding: 20px; font-family: 'Montserrat', sans-serif; }
+        /* Ajustes de Accesibilidad personalizados para SEP */
+        .acc-trigger { position: fixed; left: 0; top: 50%; transform: translateY(-50%); background: #9D2449; color: white; padding: 12px 8px; border-radius: 0 5px 5px 0; cursor: pointer; z-index: 1001; box-shadow: 2px 0 10px rgba(0,0,0,0.2); }
+        #acc-panel { position: fixed; left: -320px; top: 0; width: 300px; height: 100vh; background: #EAEAEA; z-index: 1000; transition: 0.4s ease; box-shadow: 5px 0 15px rgba(0,0,0,0.3); overflow-y: auto; padding: 20px; font-family: 'Montserrat', sans-serif; }
         #acc-panel.active { left: 0; }
-        .acc-btn-reset { background: var(--acc-dark-pink); color: white; border: none; width: 100%; padding: 15px; border-radius: 8px; display: flex; align-items: center; font-weight: bold; margin-bottom: 25px; cursor: pointer; font-size: 16px; }
-        .acc-option { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; cursor: pointer; padding: 8px; border-radius: 5px; }
-        .acc-icon { background: var(--acc-pink); color: white; width: 45px; height: 45px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-        .acc-text { color: var(--acc-pink); font-size: 14px; font-weight: 600; line-height: 1.2; }
-        
-        .dyslexic-font { font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important; }
-        .high-contrast { background: #000 !important; color: #ffff00 !important; }
-        .high-contrast * { background-color: transparent !important; color: #ffff00 !important; border-color: #ffff00 !important; }
-        .large-cursor, .large-cursor * { cursor: crosshair !important; }
-
-        /* --- DISEÑO PRINCIPAL --- */
-        nav.gob-header { background-color: #0B231E; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; }
-        .logo-gob { height: 45px; }
-        .nav-links-gob { display: flex; gap: 20px; list-style: none; }
-        .nav-links-gob a { color: white; text-decoration: none; font-size: 14px; font-family: 'Montserrat', sans-serif; }
-        .header-image-container { width: 100%; height: auto; border-bottom: 8px solid var(--gob-oro); background: #fff; }
-        .header-image-container img { width: 100%; height: auto; display: block; }
-
-        main { flex: 1; max-width: 1000px; margin: 40px auto; padding: 0 20px; text-align: center; width: 100%; }
-        .titulos-sep { margin-bottom: 30px; font-family: 'Montserrat', sans-serif; }
-        .titulos-sep h2 { font-weight: 700; font-size: 26px; color: #444; }
-        .titulos-sep h3 { font-weight: 400; font-size: 18px; color: #666; margin-top: 5px; }
-        .titulos-sep .linea-decorativa { width: 60px; height: 3px; background: var(--gob-oro); margin: 15px auto; }
-
-        .search-container { background: #ffffff; border-top: 4px solid var(--gob-guinda-claro); border-radius: 4px; padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        input[type="text"] { width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 18px; margin-bottom: 25px; font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
-        .button-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-        .btn-buscar { background-color: var(--gob-verde-oscuro); color: white; padding: 12px 40px; border: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .btn-restablecer { background-color: var(--gob-gris-boton); color: white; padding: 12px 25px; border: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; cursor: pointer; }
-
-        /* CONTENEDORES DINÁMICOS */
-        #resultado, #error-container { display: none; margin-top: 40px; text-align: left; background: white; padding: 30px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 15px rgba(0,0,0,0.1); animation: fadeIn 0.5s; margin-bottom: 50px; }
-        .grid-resultados { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .info-item { font-family: 'Montserrat', sans-serif; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
-        .info-label { font-weight: 700; color: #333; font-size: 12px; display: block; text-transform: uppercase; }
-        .info-value { font-weight: 400; color: #555; font-size: 15px; display: block; margin-top: 3px; }
-        .badge-registro { background-color: var(--gob-verde-exito); color: white; padding: 3px 10px; border-radius: 4px; font-weight: 700; font-size: 12px; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        footer { background-color: #13322B; color: white; padding: 50px 0 20px 0; font-family: 'Montserrat', sans-serif; }
-        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; padding: 0 20px; }
-        .footer-col h4 { font-size: 16px; margin-bottom: 20px; border-bottom: 1px solid var(--gob-oro); display: inline-block; padding-bottom: 5px; }
-        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; opacity: 0.6; }
-
-        @media (max-width: 600px) { .grid-resultados { grid-template-columns: 1fr; } .nav-links-gob { display: none; } }
+        .acc-option { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; cursor: pointer; padding: 8px; border-radius: 5px; color: #9D2449; font-weight: 600; font-size: 13px; }
+        .acc-icon { background: #B37185; color: white; width: 35px; height: 35px; border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+        .dyslexic-font { font-family: 'OpenDyslexic', sans-serif !important; }
     </style>
 </head>
-<body>
 
-<div class="acc-trigger" onclick="toggleAccPanel()"><i class="fas fa-universal-access fa-2x"></i></div>
-<div id="acc-panel">
-    <button class="acc-btn-reset" onclick="resetAcc()"><i class="fas fa-undo-alt" style="margin-right:12px"></i> Restablecer</button>
-    <div class="acc-option" onclick="applyGrayscale()"><div class="acc-icon"><i class="fas fa-circle-half-stroke"></i></div><div class="acc-text">Cambiar escala de grises</div></div>
-    <div class="acc-option" onclick="toggleCursor()"><div class="acc-icon"><i class="fas fa-mouse-pointer"></i></div><div class="acc-text">Cambiar tamaño de cursor</div></div>
-    <div class="acc-option" onclick="toggleContrast()"><div class="acc-icon"><i class="fas fa-palette"></i></div><div class="acc-text">Cambiar el contraste de color</div></div>
-    <div class="acc-option" onclick="toggleDyslexia()"><div class="acc-icon"><i class="fas fa-italic"></i></div><div class="acc-text">Cambio de tipografía dislexia</div></div>
-    <div class="acc-option" onclick="toggleSpacing()"><div class="acc-icon"><i class="fas fa-arrows-up-down"></i></div><div class="acc-text">Espaciado vertical</div></div>
-</div>
-
-<nav class="gob-header">
-    <a href="https://www.gob.mx"><img class="logo-gob" src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" alt="Gobierno de México"></a>
-    <ul class="nav-links-gob">
-        <li><a href="https://www.gob.mx/tramites">Trámites</a></li>
-        <li><a href="https://www.gob.mx/gobierno">Gobierno</a></li>
-        <li><a href="#"><i class="fas fa-search"></i></a></li>
-    </ul>
-</nav>
-
-<div class="header-image-container">
-    <a href="index.html"><img src="logo.png" alt="Registro Nacional de Profesionistas"></a>
-</div>
-
-<main>
-    <div class="titulos-sep">
-        <h2>Sistema de Certificación Electrónica</h2>
-        <h3>Subsecretaría de Educación Media Superior</h3>
-        <div class="linea-decorativa"></div>
+<body ng-app="documentos">
+    <div class="acc-trigger" onclick="toggleAcc()"><i class="fas fa-universal-access fa-2x"></i></div>
+    <div id="acc-panel">
+        <h4 style="color:#621132; margin-bottom:20px;">Accesibilidad</h4>
+        <div class="acc-option" onclick="resetAcc()"><div class="acc-icon"><i class="fas fa-undo"></i></div>Restablecer</div>
+        <div class="acc-option" onclick="doGrayscale()"><div class="acc-icon"><i class="fas fa-adjust"></i></div>Escala de grises</div>
+        <div class="acc-option" onclick="doDyslexia()"><div class="acc-icon"><i class="fas fa-font"></i></div>Fuente Dislexia</div>
     </div>
 
-    <div class="search-container">
-        <p style="text-align: left; font-size: 14px; margin-bottom: 15px; font-family: 'Montserrat';">Ingrese el folio de control para validar el documento:</p>
-        <input type="text" id="folioInput" placeholder="INGRESE EL FOLIO" maxlength="30">
-        <div class="button-group">
-            <button class="btn-buscar" onclick="buscar()">CONSULTAR</button>
-            <button class="btn-restablecer" onclick="restablecer()">LIMPIAR</button>
+    <div id="div-sub-navbar"></div>
+
+    <div>
+        <img class="img-background" src="images/bnr_documentos.png" style="width: 100%;">
+    </div>
+
+    <div class="container container-top">
+        <div class="row align-items-center">
+            <div class="column col-lg-12">
+                <h3>Sistema de Información y Gestión Educativa</h3>
+                <h2 class="mt-1">Validación de documentos académicos electrónicos</h2>
+            </div>
         </div>
     </div>
 
-    <div id="error-container">
-        <div style="border-left: 5px solid var(--gob-rojo-error); padding-left: 15px;">
-            <h4 style="font-family: 'Montserrat'; color: var(--gob-rojo-error);"><i class="fas fa-exclamation-triangle"></i> Folio No Encontrado</h4>
-            <p style="font-size: 14px; color: #666; margin-top: 10px;">El folio ingresado no existe en el Registro Nacional. Verifique que sea correcto.</p>
+    <div class="container bc_title">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item active">Documentos académicos</li>
+        </ol>
+    </div>
+
+    <main id="search">
+        <div class="container container-form mt-2">
+            <div class="row">
+                <div class="column col-lg-6">
+                  <div class="form-group mb-2">
+                    <input id="folio" type="text" placeholder="Ingrese el folio" class="form-control mt-3" style="text-transform: uppercase;">
+                  </div>
+                </div>
+                <div class="column col-lg-3 col-md-6 col-sm-6">
+                    <button onclick="buscarFolio()" class="btn btn-primary btn-block mt-3" style="background-color: #11322B;">Buscar</button>
+                </div>
+                <div class="column col-lg-3 col-md-6 col-sm-6">
+                    <button onclick="restablecerTodo()" class="btn btn-secondary btn-block mt-3">Restablecer</button>
+                </div>
+            </div>
+            <div class="mt-3">
+                <a href="archivos/UbicaFolio.pdf" class="btn-link link-color" target="_blank">Ubica el folio en tu certificado</a>
+            </div>
         </div>
-    </div>
 
-    <div id="resultado">
-        <div style="margin-bottom: 20px; border-left: 5px solid var(--gob-verde-exito); padding-left: 15px;">
-            <h4 style="font-family: 'Montserrat'; color: var(--gob-verde-oscuro);">Resultado de la Validación</h4>
-            <p style="font-size: 13px; color: #666;">Documento autenticado exitosamente.</p>
+        <div class="container" id="sectionResultWithoutData" style="display:none; margin-top: 30px;">
+            <div class="top-buffer-submenu">
+                <p class="titulo_subtexto">Información no encontrada</p>
+                <hr class="red">
+                <div class="alert alert-danger">
+                    <p><b>La información solicitada no se encuentra en nuestros registros.</b></p>
+                    <p>Verifica los datos que ingresaste y vuelve a intentarlo.</p>
+                    <br>
+                    <button class="btn btn-danger" onclick="restablecerTodo()">Volver a intentarlo</button>
+                </div>
+            </div>
         </div>
-        <div id="infoDetalle" class="grid-resultados"></div>
-    </div>
-</main>
 
-<footer>
-    <div class="footer-container">
-        <div class="footer-col"><img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="150" style="filter: brightness(0) invert(1);"></div>
-        <div class="footer-col"><h4>Enlaces</h4><a href="#">Participa</a><a href="#">Marco Jurídico</a></div>
-        <div class="footer-col"><h4>Contacto</h4><a href="#">Mesa de ayuda</a></div>
-    </div>
-    <div class="footer-bottom">SEP | SEMS | 2026</div>
-</footer>
+        <div class="container" id="sectionResultWithData" style="display:none; margin-top: 5vh;">
+            <p class="titulo_subtexto"><span>Detalle del documento</span></p>
+            <hr class="red">
+            <div class="row align-items-start">
+                <div class="col-lg-3 col-md-12 mb-3"><b>Nombre:</b></div>
+                <div class="col-lg-9 col-md-12 mb-3"><span id="res-nombre"></span></div>
 
-<script src="folios.js"></script>
+                <div class="col-lg-3 col-md-12 mb-3"><b>Tipo de estudios:</b></div>
+                <div class="col-lg-9 col-md-12 mb-3" style="text-transform: uppercase;"><span id="res-plan"></span></div>
 
-<script>
-    // FUNCIONES ACCESIBILIDAD
-    function toggleAccPanel() { document.getElementById('acc-panel').classList.toggle('active'); }
-    function resetAcc() { document.body.style.filter = "none"; document.body.style.lineHeight = "normal"; document.body.classList.remove('dyslexic-font', 'high-contrast', 'large-cursor'); }
-    function applyGrayscale() { document.body.style.filter = (document.body.style.filter === "grayscale(100%)") ? "none" : "grayscale(100%)"; }
-    function toggleDyslexia() { document.body.classList.toggle('dyslexic-font'); }
-    function toggleContrast() { document.body.classList.toggle('high-contrast'); }
-    function toggleSpacing() { document.body.style.lineHeight = (document.body.style.lineHeight === "2.2") ? "normal" : "2.2"; }
-    function toggleCursor() { document.body.classList.toggle('large-cursor'); }
+                <div class="col-lg-3 col-md-12 mb-3"><b>Folio:</b></div>
+                <div class="col-lg-9 col-md-12 mb-3"><span id="res-folio"></span></div>
 
-    // LÓGICA DE BÚSQUEDA INTEGRADA
-    function ejecutarBusqueda(folioKey) {
-        if (!folioKey) return;
+                <div class="col-lg-3 col-md-12 mb-3"><b>Autoridad emisora:</b></div>
+                <div class="col-lg-9 col-md-12 mb-3"><span id="res-emisor"></span></div>
+
+                <div class="col-lg-3 col-md-12 mb-3"><b>Fecha de registro:</b></div>
+                <div class="col-lg-9 col-md-12 mb-3"><span id="res-fecha"></span></div>
+            </div>
+
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-4 alert alert-success text-center">
+                    <h5><b>Promedio:</b></h5>
+                    <p id="res-promedio" style="font-size: 1.5rem; font-weight: bold;"></p>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-4 alert alert-info text-center">
+                    <h5><b>Estatus:</b></h5>
+                    <h5 id="res-estatus" style="text-transform: capitalize;"></h5>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="folios.js"></script>
+
+    <script>
+        // --- LÓGICA DE BÚSQUEDA ---
+        function buscarFolio() {
+            const input = document.getElementById('folio').value.trim().toUpperCase();
+            const sectionData = document.getElementById('sectionResultWithData');
+            const sectionNoData = document.getElementById('sectionResultWithoutData');
+
+            // Ocultar todo antes de buscar
+            sectionData.style.display = 'none';
+            sectionNoData.style.display = 'none';
+
+            if (!input) return;
+
+            // Verificar si existe en la baseDatos de folios.js
+            if (window.baseDatos && window.baseDatos[input]) {
+                const d = window.baseDatos[input];
+                
+                // Mapeo de datos a tu HTML
+                document.getElementById('res-nombre').innerText = d.nombre;
+                document.getElementById('res-plan').innerText = d.plan;
+                document.getElementById('res-folio').innerText = input;
+                document.getElementById('res-emisor').innerText = d.plantel + " / " + d.emisor;
+                document.getElementById('res-fecha').innerText = d.timbrado;
+                document.getElementById('res-promedio').innerText = d.promedio;
+                document.getElementById('res-estatus').innerText = d.estatus;
+
+                sectionData.style.display = 'block';
+                sectionData.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                sectionNoData.style.display = 'block';
+                sectionNoData.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function restablecerTodo() {
+            document.getElementById('folio').value = "";
+            document.getElementById('sectionResultWithData').style.display = 'none';
+            document.getElementById('sectionResultWithoutData').style.display = 'none';
+            window.scrollTo(0,0);
+        }
+
+        // --- SOPORTE QR ---
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const f = urlParams.get('folio');
+            if (f) {
+                document.getElementById('folio').value = f.toUpperCase();
+                setTimeout(buscarFolio, 500);
+            }
+        };
+
+        // --- ACCESIBILIDAD ---
+        function toggleAcc() { document.getElementById('acc-panel').classList.toggle('active'); }
+        function resetAcc() { document.body.style.filter = "none"; document.body.classList.remove('dyslexic-font'); }
+        function doGrayscale() { document.body.style.filter = "grayscale(100%)"; }
+        function doDyslexia() { document.body.classList.toggle('dyslexic-font'); }
         
-        // Limpiamos el folio de espacios y lo pasamos a mayúsculas
-        const folio = folioKey.trim().toUpperCase();
-        const resDiv = document.getElementById('resultado');
-        const errDiv = document.getElementById('error-container');
-        const detalle = document.getElementById('infoDetalle');
-
-        resDiv.style.display = 'none';
-        errDiv.style.display = 'none';
-
-        // Intentamos obtener la base de datos de folios.js
-        const DB = window.baseDatos || (typeof baseDatos !== 'undefined' ? baseDatos : null);
-
-        if (DB && DB[folio]) {
-            const d = DB[folio];
-            detalle.innerHTML = `
-                <div class="info-item"><span class="info-label">Nombre del Alumno:</span> <span class="info-value">${d.nombre}</span></div>
-                <div class="info-item"><span class="info-label">Matrícula:</span> <span class="info-value">${d.matricula}</span></div>
-                <div class="info-item"><span class="info-label">Plan Académico:</span> <span class="info-value">${d.plan}</span></div>
-                <div class="info-item"><span class="info-label">Folio de Control:</span> <span class="info-value">${folio}</span></div>
-                <div class="info-item"><span class="info-label">Promedio Final:</span> <span class="info-value">${d.promedio}</span></div>
-                <div class="info-item"><span class="info-label">Créditos Totales:</span> <span class="info-value">${d.creditos}</span></div>
-                <div class="info-item"><span class="info-label">Estatus:</span> <span class="badge-registro">${d.estatus}</span></div>
-                <div class="info-item"><span class="info-label">Fecha de Validación:</span> <span class="info-value">${d.timbrado}</span></div>
-                <div class="info-item" style="grid-column: span 2;"><span class="info-label">Institución:</span> <span class="info-value">${d.plantel} - ${d.emisor}</span></div>
-            `;
-            resDiv.style.display = 'block';
-            resDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-            errDiv.style.display = 'block';
-            errDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    }
-
-    function buscar() {
-        const input = document.getElementById('folioInput');
-        if (!input.value) { alert("Por favor, ingrese un folio."); return; }
-        ejecutarBusqueda(input.value);
-    }
-
-    function restablecer() {
-        document.getElementById('folioInput').value = "";
-        document.getElementById('resultado').style.display = 'none';
-        document.getElementById('error-container').style.display = 'none';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // SOPORTE PARA QR
-    window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const folioQR = urlParams.get('folio');
-        if (folioQR) {
-            document.getElementById('folioInput').value = folioQR.toUpperCase();
-            setTimeout(() => { ejecutarBusqueda(folioQR); }, 500);
-        }
-    };
-
-    document.getElementById('folioInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') buscar(); });
-</script>
-
+        // Enter para buscar
+        document.getElementById('folio').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') buscarFolio();
+        });
+    </script>
 </body>
 </html>

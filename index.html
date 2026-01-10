@@ -10,32 +10,13 @@
     <link rel="stylesheet" type="text/css" href="css/navbar-settings.css">   
     <link rel="stylesheet" type="text/css" href="css/global_siged.css"> 
     <link rel="stylesheet" type="text/css" href="css/documentos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
-    <style>
-        /* Ajustes de Accesibilidad personalizados para SEP */
-        .acc-trigger { position: fixed; left: 0; top: 50%; transform: translateY(-50%); background: #9D2449; color: white; padding: 12px 8px; border-radius: 0 5px 5px 0; cursor: pointer; z-index: 1001; box-shadow: 2px 0 10px rgba(0,0,0,0.2); }
-        #acc-panel { position: fixed; left: -320px; top: 0; width: 300px; height: 100vh; background: #EAEAEA; z-index: 1000; transition: 0.4s ease; box-shadow: 5px 0 15px rgba(0,0,0,0.3); overflow-y: auto; padding: 20px; font-family: 'Montserrat', sans-serif; }
-        #acc-panel.active { left: 0; }
-        .acc-option { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; cursor: pointer; padding: 8px; border-radius: 5px; color: #9D2449; font-weight: 600; font-size: 13px; }
-        .acc-icon { background: #B37185; color: white; width: 35px; height: 35px; border-radius: 5px; display: flex; align-items: center; justify-content: center; }
-        .dyslexic-font { font-family: 'OpenDyslexic', sans-serif !important; }
-    </style>
 </head>
 
 <body ng-app="documentos">
-    <div class="acc-trigger" onclick="toggleAcc()"><i class="fas fa-universal-access fa-2x"></i></div>
-    <div id="acc-panel">
-        <h4 style="color:#621132; margin-bottom:20px;">Accesibilidad</h4>
-        <div class="acc-option" onclick="resetAcc()"><div class="acc-icon"><i class="fas fa-undo"></i></div>Restablecer</div>
-        <div class="acc-option" onclick="doGrayscale()"><div class="acc-icon"><i class="fas fa-adjust"></i></div>Escala de grises</div>
-        <div class="acc-option" onclick="doDyslexia()"><div class="acc-icon"><i class="fas fa-font"></i></div>Fuente Dislexia</div>
-    </div>
-
     <div id="div-sub-navbar"></div>
 
     <div>
-        <img class="img-background" src="images/bnr_documentos.png" style="width: 100%;">
+        <img class="img-background" src="images/bnr_documentos.png">
     </div>
 
     <div class="container container-top">
@@ -44,146 +25,166 @@
                 <h3>Sistema de Información y Gestión Educativa</h3>
                 <h2 class="mt-1">Validación de documentos académicos electrónicos</h2>
             </div>
-        </div>
+        </div><br><br>
     </div>
 
-    <div class="container bc_title">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-            <li class="breadcrumb-item active">Documentos académicos</li>
-        </ol>
-    </div>
-
-    <main id="search">
-        <div class="container container-form mt-2">
+    <div class="container bc_title" style="margin-top: 0vh; margin-bottom: -3vh">
             <div class="row">
-                <div class="column col-lg-6">
-                  <div class="form-group mb-2">
-                    <input id="folio" type="text" placeholder="Ingrese el folio" class="form-control mt-3" style="text-transform: uppercase;">
-                  </div>
-                </div>
-                <div class="column col-lg-3 col-md-6 col-sm-6">
-                    <button onclick="buscarFolio()" class="btn btn-primary btn-block mt-3" style="background-color: #11322B;">Buscar</button>
-                </div>
-                <div class="column col-lg-3 col-md-6 col-sm-6">
-                    <button onclick="restablecerTodo()" class="btn btn-secondary btn-block mt-3">Restablecer</button>
+                <div class="col-sm-8">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="index.html#consultas">Consultas</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="#">Documentos académicos electrónicos</a></li>
+                    </ol>
                 </div>
             </div>
+        </div>  
+    <br>
+    <main id="search" ng-controller="documentosController">
+
+        <div class="container container-form mt-2" >
+            <form class="form" ng-submit="getConsultaByFOLIO(folio);">
+                <div class="row">
+                    <div class="column col-lg-6">
+                      <div class="form-group  mb-2">
+                        <label for="folio" class="sr-only">Folio</label>
+                        <input id="folio" type="text" placeholder="Ingrese el folio"
+                                class="form-control mt-3"
+                                required
+                                ng-model="folio" >
+                      </div>
+                    </div>
+                    <div class="column col-lg-3 col-md-6 col-sm-6">
+                        <button id="btn-buscar" type="submit" class="btn btn-active btn-width mt-2">Buscar</button>
+                    </div>
+                    <div class="column col-lg-3 col-md-6 col-sm-6">
+                        <button id="btn-restablecer" type="reset" class="btn btn-secondary active btn-width mt-2" 
+                                    ng-click="newSearch()">Restablecer</button>
+                    </div>
+                </div>
+            </form>
             <div class="mt-3">
-                <a href="archivos/UbicaFolio.pdf" class="btn-link link-color" target="_blank">Ubica el folio en tu certificado</a>
+                <a href="archivos/UbicaFolio.pdf" class="btn-link link-color" target="_blank" title="Ubica el folio en tu certificado">Ubica el folio en tu certificado
+                </a>
             </div>
         </div>
 
-        <div class="container" id="sectionResultWithoutData" style="display:none; margin-top: 30px;">
-            <div class="top-buffer-submenu">
-                <p class="titulo_subtexto">Información no encontrada</p>
-                <hr class="red">
-                <div class="alert alert-danger">
-                    <p><b>La información solicitada no se encuentra en nuestros registros.</b></p>
-                    <p>Verifica los datos que ingresaste y vuelve a intentarlo.</p>
-                    <br>
-                    <button class="btn btn-danger" onclick="restablecerTodo()">Volver a intentarlo</button>
+        <div class="container" id="divResultsWithoutData">
+            <section id="sectionResultWithoutData" style="display:none;">
+                <div data-role="page" >
+                    <div class="top-buffer-submenu">
+                        <p class="titulo_subtexto" title="Información no encontrada">Información no encontrada</p>
+                        <hr class="red">
+                        <section style="margin: 20px;">
+                            <div class="alert alert-danger" >
+                                <p title="La información solicitada no se encuentra en nuestros registros"><b>La información solicitada no se encuentra en nuestros registros.</b></p>
+                                <br>
+                                <p title="Verifica los datos que ingresaste y vuelve a intentarlo.">Verifica los datos que ingresaste y vuelve a intentarlo.</p>
+                                <br>
+                                <button class="btn btn-danger bnt-nvo-intento" type="reset" ng-click="newSearch()" onclick="location.reload();" title="Volver a intentarlo">Volver a intentarlo</button>
+                            </div>
+                        </section>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
 
-        <div class="container" id="sectionResultWithData" style="display:none; margin-top: 5vh;">
-            <p class="titulo_subtexto"><span>Detalle del documento</span></p>
-            <hr class="red">
-            <div class="row align-items-start">
-                <div class="col-lg-3 col-md-12 mb-3"><b>Nombre:</b></div>
-                <div class="col-lg-9 col-md-12 mb-3"><span id="res-nombre"></span></div>
+       <div class="container" id="divResultsWithData">
+            <section id="sectionResultWithData" style="display:none; margin-top: 5vh ">
+                <div class="mb-5">
+                    <div class="row">
+                        <div class="column col-12">
+                            <p class="titulo_subtexto" id="detalle" title="Detalle del documento"><span>Detalle del documento</span></p>
+                            <hr class="red">
+                        </div>
+                    </div>
+                    <div class="row align-items-start">
+                        <div class="column col-lg-3 col-md-12 mb-3"><b>Nombre:</b></div>
+                        <div class="column col-lg-9 col-md-12 mb-3">
+                            <span id="res-nombres"></span>
+                        </div>
 
-                <div class="col-lg-3 col-md-12 mb-3"><b>Tipo de estudios:</b></div>
-                <div class="col-lg-9 col-md-12 mb-3" style="text-transform: uppercase;"><span id="res-plan"></span></div>
+                        <div class="column col-lg-3 col-md-12 mb-3"><b>Tipo de estudios:</b></div>
+                        <div class="column col-lg-9 col-md-12 mb-3" style="text-transform: uppercase">
+                            <span id="res-tipoCertificacion"></span>
+                        </div>
 
-                <div class="col-lg-3 col-md-12 mb-3"><b>Folio:</b></div>
-                <div class="col-lg-9 col-md-12 mb-3"><span id="res-folio"></span></div>
+                        <div class="column col-lg-3 col-md-12 mb-3"><b>Folio:</b></div>
+                        <div class="column col-lg-9 col-md-12 mb-3">
+                            <span id="res-folio"></span>
+                        </div>                        
 
-                <div class="col-lg-3 col-md-12 mb-3"><b>Autoridad emisora:</b></div>
-                <div class="col-lg-9 col-md-12 mb-3"><span id="res-emisor"></span></div>
+                        <div class="column col-lg-3 col-md-12 mb-3"><b>Autoridad emisora:</b></div>
+                        <div class="column col-lg-9 col-md-12 mb-3">
+                            <span id="res-institucion"></span>
+                        </div>                        
 
-                <div class="col-lg-3 col-md-12 mb-3"><b>Fecha de registro:</b></div>
-                <div class="col-lg-9 col-md-12 mb-3"><span id="res-fecha"></span></div>
-            </div>
+                        <div class="column col-lg-3 col-md-12 mb-3"><b>Fecha de registro:</b></div>
+                        <div class="column col-lg-9 col-md-12 mb-3">
+                            <span id="res-fecha"></span>
+                        </div>
+                    </div>
 
-            <div class="row justify-content-center mt-4">
-                <div class="col-md-4 alert alert-success text-center">
-                    <h5><b>Promedio:</b></h5>
-                    <p id="res-promedio" style="font-size: 1.5rem; font-weight: bold;"></p>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3 alert-datos-incial alert alert-success text-center">
+                            <h5><b>Promedio:</b></h5>
+                            <p><span id="res-promedio"></span></p>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3 alert-datos-incial alert alert-info text-center">
+                            <h5><b>Estatus:</b></h5>
+                            <h5><span id="res-estatus" style="text-transform: capitalize"></span></h5>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-1"></div>
-                <div class="col-md-4 alert alert-info text-center">
-                    <h5><b>Estatus:</b></h5>
-                    <h5 id="res-estatus" style="text-transform: capitalize;"></h5>
-                </div>
-            </div>
+            </section>
         </div>
     </main>
 
     <script src="folios.js"></script>
 
     <script>
-        // --- LÓGICA DE BÚSQUEDA ---
-        function buscarFolio() {
-            const input = document.getElementById('folio').value.trim().toUpperCase();
-            const sectionData = document.getElementById('sectionResultWithData');
-            const sectionNoData = document.getElementById('sectionResultWithoutData');
+        // Lógica mínima para conectar tu HTML con folios.js
+        function getConsultaByFOLIO(folioIngresado) {
+            var f = (folioIngresado || document.getElementById('folio').value).trim().toUpperCase();
+            var dataDiv = document.getElementById('sectionResultWithData');
+            var noDataDiv = document.getElementById('sectionResultWithoutData');
+            
+            dataDiv.style.display = 'none';
+            noDataDiv.style.display = 'none';
 
-            // Ocultar todo antes de buscar
-            sectionData.style.display = 'none';
-            sectionNoData.style.display = 'none';
-
-            if (!input) return;
-
-            // Verificar si existe en la baseDatos de folios.js
-            if (window.baseDatos && window.baseDatos[input]) {
-                const d = window.baseDatos[input];
-                
-                // Mapeo de datos a tu HTML
-                document.getElementById('res-nombre').innerText = d.nombre;
-                document.getElementById('res-plan').innerText = d.plan;
-                document.getElementById('res-folio').innerText = input;
-                document.getElementById('res-emisor').innerText = d.plantel + " / " + d.emisor;
+            if (window.baseDatos && window.baseDatos[f]) {
+                var d = window.baseDatos[f];
+                document.getElementById('res-nombres').innerText = d.nombre;
+                document.getElementById('res-tipoCertificacion').innerText = d.plan;
+                document.getElementById('res-folio').innerText = f;
+                document.getElementById('res-institucion').innerText = d.plantel + " - " + d.emisor;
                 document.getElementById('res-fecha').innerText = d.timbrado;
                 document.getElementById('res-promedio').innerText = d.promedio;
                 document.getElementById('res-estatus').innerText = d.estatus;
-
-                sectionData.style.display = 'block';
-                sectionData.scrollIntoView({ behavior: 'smooth' });
+                
+                dataDiv.style.display = 'block';
             } else {
-                sectionNoData.style.display = 'block';
-                sectionNoData.scrollIntoView({ behavior: 'smooth' });
+                noDataDiv.style.display = 'block';
             }
         }
 
-        function restablecerTodo() {
-            document.getElementById('folio').value = "";
-            document.getElementById('sectionResultWithData').style.display = 'none';
-            document.getElementById('sectionResultWithoutData').style.display = 'none';
-            window.scrollTo(0,0);
-        }
-
-        // --- SOPORTE QR ---
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const f = urlParams.get('folio');
-            if (f) {
-                document.getElementById('folio').value = f.toUpperCase();
-                setTimeout(buscarFolio, 500);
-            }
+        // Sobrescribimos la función para que el formulario la use
+        document.querySelector('form').onsubmit = function(e) {
+            e.preventDefault();
+            getConsultaByFOLIO();
         };
 
-        // --- ACCESIBILIDAD ---
-        function toggleAcc() { document.getElementById('acc-panel').classList.toggle('active'); }
-        function resetAcc() { document.body.style.filter = "none"; document.body.classList.remove('dyslexic-font'); }
-        function doGrayscale() { document.body.style.filter = "grayscale(100%)"; }
-        function doDyslexia() { document.body.classList.toggle('dyslexic-font'); }
-        
-        // Enter para buscar
-        document.getElementById('folio').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') buscarFolio();
-        });
+        // Soporte QR intacto
+        window.onload = function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var fQR = urlParams.get('folio');
+            if (fQR) {
+                document.getElementById('folio').value = fQR.toUpperCase();
+                getConsultaByFOLIO(fQR);
+            }
+        };
     </script>
 </body>
 </html>

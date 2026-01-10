@@ -16,8 +16,9 @@
             --gob-verde-oscuro: #11322B; 
             --gob-gris-boton: #757575;   
             --gob-verde-exito: #28a745;
+            --gob-rojo-error: #D32F2F;
             /* Colores Menú Accesibilidad */
-            --acc-bg: #E0E0E0;
+            --acc-bg: #EAEAEA;
             --acc-pink: #B37185;
             --acc-dark-pink: #912849;
         }
@@ -35,198 +36,84 @@
             transition: filter 0.3s;
         }
 
-        /* --- ESTILOS MENÚ ACCESIBILIDAD --- */
-        .acc-trigger {
-            position: fixed;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--acc-dark-pink);
-            color: white;
-            padding: 15px 10px;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            z-index: 1001;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-        }
-
-        #acc-panel {
-            position: fixed;
-            left: -320px;
-            top: 0;
-            width: 300px;
-            height: 100vh;
-            background: var(--acc-bg);
-            z-index: 1000;
-            transition: 0.4s;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.3);
-            overflow-y: auto;
-            padding: 20px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
+        /* --- MENÚ ACCESIBILIDAD --- */
+        .acc-trigger { position: fixed; left: 0; top: 50%; transform: translateY(-50%); background: var(--acc-dark-pink); color: white; padding: 15px 8px; border-radius: 0 5px 5px 0; cursor: pointer; z-index: 1001; box-shadow: 2px 0 10px rgba(0,0,0,0.2); }
+        #acc-panel { position: fixed; left: -320px; top: 0; width: 300px; height: 100vh; background: var(--acc-bg); z-index: 1000; transition: 0.4s ease-in-out; box-shadow: 5px 0 15px rgba(0,0,0,0.3); overflow-y: auto; padding: 20px; font-family: 'Montserrat', sans-serif; }
         #acc-panel.active { left: 0; }
-
-        .acc-btn-reset {
-            background: var(--acc-dark-pink);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-
-        .acc-option {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 5px;
-            transition: 0.2s;
-        }
-
-        .acc-option:hover { background: rgba(0,0,0,0.05); }
-
-        .acc-icon {
-            background: var(--acc-pink);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .acc-text {
-            color: var(--acc-pink);
-            font-size: 14px;
-            line-height: 1.2;
-            font-weight: 600;
-        }
-
+        .acc-btn-reset { background: var(--acc-dark-pink); color: white; border: none; width: 100%; padding: 15px; border-radius: 8px; display: flex; align-items: center; font-weight: bold; margin-bottom: 25px; cursor: pointer; font-size: 16px; }
+        .acc-option { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; cursor: pointer; padding: 8px; border-radius: 5px; }
+        .acc-icon { background: var(--acc-pink); color: white; width: 45px; height: 45px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .acc-text { color: var(--acc-pink); font-size: 14px; font-weight: 600; line-height: 1.2; }
+        
         /* Clases de apoyo */
         .dyslexic-font { font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important; }
         .high-contrast { background: #000 !important; color: #ffff00 !important; }
-        .high-contrast * { color: #ffff00 !important; border-color: #ffff00 !important; }
+        .high-contrast * { background-color: transparent !important; color: #ffff00 !important; border-color: #ffff00 !important; }
+        .large-cursor { cursor: crosshair !important; }
+        .large-cursor * { cursor: crosshair !important; }
 
-        /* ---------------------------------- */
-
+        /* --- DISEÑO PRINCIPAL --- */
         nav.gob-header { background-color: #0B231E; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; }
         .logo-gob { height: 45px; }
         .nav-links-gob { display: flex; gap: 20px; list-style: none; }
         .nav-links-gob a { color: white; text-decoration: none; font-size: 14px; font-family: 'Montserrat', sans-serif; }
-
         .header-image-container { width: 100%; height: auto; border-bottom: 8px solid var(--gob-oro); background: #fff; }
         .header-image-container img { width: 100%; height: auto; display: block; }
-        .barra-oro { background-color: var(--gob-guinda); height: 8px; }
 
         main { flex: 1; max-width: 1000px; margin: 40px auto; padding: 0 20px; text-align: center; width: 100%; }
-
         .titulos-sep { margin-bottom: 30px; font-family: 'Montserrat', sans-serif; }
         .titulos-sep h2 { font-weight: 700; font-size: 26px; color: #444; }
         .titulos-sep h3 { font-weight: 400; font-size: 18px; color: #666; margin-top: 5px; }
         .titulos-sep .linea-decorativa { width: 60px; height: 3px; background: var(--gob-oro); margin: 15px auto; }
 
         .search-container { background: #ffffff; border-top: 4px solid var(--gob-guinda-claro); border-radius: 4px; padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-
         input[type="text"] { width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 18px; margin-bottom: 25px; font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
-
         .button-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-
         .btn-buscar { background-color: var(--gob-verde-oscuro); color: white; padding: 12px 40px; border: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .btn-buscar:hover { background-color: #1a4d42; transform: translateY(-2px); }
-
         .btn-restablecer { background-color: var(--gob-gris-boton); color: white; padding: 12px 25px; border: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; cursor: pointer; }
 
-        #resultado { display: none; margin-top: 40px; text-align: left; background: white; padding: 30px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 15px rgba(0,0,0,0.1); animation: fadeIn 0.5s; margin-bottom: 50px; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
+        /* CONTENEDORES DINÁMICOS */
+        #resultado, #error-container { display: none; margin-top: 40px; text-align: left; background: white; padding: 30px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 15px rgba(0,0,0,0.1); animation: fadeIn 0.5s; margin-bottom: 50px; }
         .grid-resultados { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .info-item { font-family: 'Montserrat', sans-serif; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
         .info-label { font-weight: 700; color: #333; font-size: 12px; display: block; text-transform: uppercase; }
         .info-value { font-weight: 400; color: #555; font-size: 15px; display: block; margin-top: 3px; }
         .badge-registro { background-color: var(--gob-verde-exito); color: white; padding: 3px 10px; border-radius: 4px; font-weight: 700; font-size: 12px; }
 
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         footer { background-color: #13322B; color: white; padding: 50px 0 20px 0; font-family: 'Montserrat', sans-serif; }
         .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; padding: 0 20px; }
         .footer-col h4 { font-size: 16px; margin-bottom: 20px; border-bottom: 1px solid var(--gob-oro); display: inline-block; padding-bottom: 5px; }
-        .footer-col a { color: white; text-decoration: none; display: block; font-size: 13px; margin-bottom: 10px; opacity: 0.8; }
-        .footer-col a:hover { opacity: 1; text-decoration: underline; }
         .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; opacity: 0.6; }
 
-        @media (max-width: 600px) {
-            .grid-resultados { grid-template-columns: 1fr; }
-            nav.gob-header { padding: 10px 20px; }
-            .nav-links-gob { display: none; }
-        }
+        @media (max-width: 600px) { .grid-resultados { grid-template-columns: 1fr; } .nav-links-gob { display: none; } }
     </style>
 </head>
 <body>
 
-<div class="acc-trigger" onclick="toggleAcc()"><i class="fas fa-universal-access fa-2x"></i></div>
+<div class="acc-trigger" onclick="toggleAccPanel()"><i class="fas fa-universal-access fa-2x"></i></div>
 
 <div id="acc-panel">
-    <button class="acc-btn-reset" onclick="resetAcc()">
-        <i class="fas fa-undo-alt" style="margin-right:10px"></i> Restablecer
-    </button>
-
-    <div class="acc-option" onclick="applyGrayscale()">
-        <div class="acc-icon"><i class="fas fa-adjust"></i></div>
-        <div class="acc-text">Cambiar escala de grises</div>
-    </div>
-
-    <div class="acc-option" onclick="alert('Lector de pantalla activado (Simulado)')">
-        <div class="acc-icon"><i class="fas fa-ear-listen"></i></div>
-        <div class="acc-text">Usar un lector de pantalla</div>
-    </div>
-
-    <div class="acc-option" onclick="changeCursor()">
-        <div class="acc-icon"><i class="fas fa-mouse-pointer"></i></div>
-        <div class="acc-text">Cambiar tamaño de cursor</div>
-    </div>
-
-    <div class="acc-option" onclick="toggleContrast()">
-        <div class="acc-icon"><i class="fas fa-palette"></i></div>
-        <div class="acc-text">Cambiar el contraste de color</div>
-    </div>
-
-    <div class="acc-option" onclick="toggleDyslexia()">
-        <div class="acc-icon"><i class="fas fa-italic"></i></div>
-        <div class="acc-text">Cambio de tipografía dislexia</div>
-    </div>
-
-    <div class="acc-option" onclick="changeSpacing()">
-        <div class="acc-icon"><i class="fas fa-text-height"></i></div>
-        <div class="acc-text">Espaciado vertical</div>
-    </div>
+    <button class="acc-btn-reset" onclick="resetAcc()"><i class="fas fa-undo-alt" style="margin-right:12px"></i> Restablecer</button>
+    <div class="acc-option" onclick="applyGrayscale()"><div class="acc-icon"><i class="fas fa-circle-half-stroke"></i></div><div class="acc-text">Cambiar escala de grises</div></div>
+    <div class="acc-option" onclick="toggleCursor()"><div class="acc-icon"><i class="fas fa-mouse-pointer"></i></div><div class="acc-text">Cambiar tamaño de cursor</div></div>
+    <div class="acc-option" onclick="toggleContrast()"><div class="acc-icon"><i class="fas fa-palette"></i></div><div class="acc-text">Cambiar el contraste de color</div></div>
+    <div class="acc-option" onclick="toggleDyslexia()"><div class="acc-icon"><i class="fas fa-italic"></i></div><div class="acc-text">Cambio de tipografía dislexia</div></div>
+    <div class="acc-option" onclick="toggleSpacing()"><div class="acc-icon"><i class="fas fa-arrows-up-down"></i></div><div class="acc-text">Espaciado vertical</div></div>
 </div>
 
 <nav class="gob-header">
-    <a href="https://www.gob.mx">
-        <img class="logo-gob" src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" alt="Gobierno de México">
-    </a>
+    <a href="https://www.gob.mx"><img class="logo-gob" src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" alt="Gobierno de México"></a>
     <ul class="nav-links-gob">
         <li><a href="https://www.gob.mx/tramites">Trámites</a></li>
         <li><a href="https://www.gob.mx/gobierno">Gobierno</a></li>
-        <li><a href="https://www.gob.mx/busqueda"><i class="fas fa-search"></i></a></li>
+        <li><a href="#"><i class="fas fa-search"></i></a></li>
     </ul>
 </nav>
 
 <div class="header-image-container">
-    <a href="index.html">
-        <img src="logo.png" alt="Registro Nacional de Profesionistas">
-    </a>
+    <a href="index.html"><img src="logo.png" alt="Registro Nacional de Profesionistas"></a>
 </div>
 
 <main>
@@ -238,10 +125,17 @@
 
     <div class="search-container">
         <p style="text-align: left; font-size: 14px; margin-bottom: 15px; font-family: 'Montserrat';">Ingrese el folio de control para validar el documento:</p>
-        <input type="text" id="folioInput" placeholder="" maxlength="20">
+        <input type="text" id="folioInput" placeholder="EJ: 2261605051234567890" maxlength="20">
         <div class="button-group">
             <button class="btn-buscar" onclick="buscar()">CONSULTAR</button>
             <button class="btn-restablecer" onclick="restablecer()">LIMPIAR</button>
+        </div>
+    </div>
+
+    <div id="error-container">
+        <div style="border-left: 5px solid var(--gob-rojo-error); padding-left: 15px;">
+            <h4 style="font-family: 'Montserrat'; color: var(--gob-rojo-error);"><i class="fas fa-exclamation-triangle"></i> Folio No Encontrado</h4>
+            <p style="font-size: 14px; color: #666; margin-top: 10px;">El folio ingresado no coincide con ningún registro en nuestra base de datos. Verifique la información.</p>
         </div>
     </div>
 
@@ -256,87 +150,37 @@
 
 <footer>
     <div class="footer-container">
-        <div class="footer-col">
-            <a href="https://www.gob.mx">
-                <img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="150" style="filter: brightness(0) invert(1); margin-bottom: 20px;">
-            </a>
-        </div>
-        <div class="footer-col">
-            <h4>Enlaces</h4>
-            <a href="https://participa.gob.mx" target="_blank">Participa</a>
-            <a href="https://www.gob.mx/publicaciones" target="_blank">Publicaciones Oficiales</a>
-            <a href="http://www.ordenjuridico.gob.mx" target="_blank">Marco Jurídico</a>
-            <a href="https://consultapublicamx.inai.org.mx/vut-web/" target="_blank">Plataforma Nacional de Transparencia</a>
-        </div>
-        <div class="footer-col">
-            <h4>¿Qué es gob.mx?</h4>
-            <a href="https://www.gob.mx/que-es-gobmx" target="_blank">Declaración de Accesibilidad</a>
-            <a href="https://www.gob.mx/aviso_de_privacidad" target="_blank">Aviso de Privacidad Integral</a>
-            <a href="https://www.gob.mx/terminos" target="_blank">Términos y Condiciones</a>
-            <a href="https://www.gob.mx/terminos#medidas-seguridad-informacion" target="_blank">Política de Seguridad</a>
-        </div>
-        <div class="footer-col">
-            <h4>Contacto</h4>
-            <a href="https://www.gob.mx/tramites/ficha/presentacion-de-quejas-y-denuncias-en-la-sfp/SFP54" target="_blank">Denuncias</a>
-            <a href="mailto:controlescolar.estatal@sems.sidgbe.gob.mx">Mesa de ayuda</a>
-            <div style="margin-top: 15px;">
-                <a href="https://www.facebook.com/gobmexico" target="_blank" style="display:inline; margin-right:15px; color:white;"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com/gobmx" target="_blank" style="display:inline; color:white;"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
+        <div class="footer-col"><img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="150" style="filter: brightness(0) invert(1);"></div>
+        <div class="footer-col"><h4>Enlaces</h4><a href="#">Participa</a><a href="#">Publicaciones</a></div>
+        <div class="footer-col"><h4>Contacto</h4><a href="#">Denuncias</a><a href="#">Mesa de ayuda</a></div>
     </div>
-    <div class="footer-bottom">
-        SEP | SEMS | Registro Federal de Educación Media Superior | México 2026
-    </div>
+    <div class="footer-bottom">SEP | SEMS | 2026</div>
 </footer>
 
+<script src="folios.js"></script>
+
 <script>
-    // FUNCIONES DE ACCESIBILIDAD
-    function toggleAcc() {
-        document.getElementById('acc-panel').classList.toggle('active');
-    }
+    // ACCESIBILIDAD
+    function toggleAccPanel() { document.getElementById('acc-panel').classList.toggle('active'); }
+    function resetAcc() { document.body.style.filter = "none"; document.body.style.lineHeight = "normal"; document.body.classList.remove('dyslexic-font', 'high-contrast', 'large-cursor'); }
+    function applyGrayscale() { document.body.style.filter = (document.body.style.filter === "grayscale(100%)") ? "none" : "grayscale(100%)"; }
+    function toggleDyslexia() { document.body.classList.toggle('dyslexic-font'); }
+    function toggleContrast() { document.body.classList.toggle('high-contrast'); }
+    function toggleSpacing() { document.body.style.lineHeight = (document.body.style.lineHeight === "2.2") ? "normal" : "2.2"; }
+    function toggleCursor() { document.body.classList.toggle('large-cursor'); }
 
-    function resetAcc() {
-        document.body.style.filter = "none";
-        document.body.classList.remove('dyslexic-font', 'high-contrast');
-        document.body.style.lineHeight = "normal";
-        document.body.style.cursor = "default";
-        const all = document.querySelectorAll('*');
-        all.forEach(el => el.style.cursor = "default");
-    }
-
-    function applyGrayscale() {
-        document.body.style.filter = document.body.style.filter === "grayscale(100%)" ? "none" : "grayscale(100%)";
-    }
-
-    function toggleDyslexia() {
-        document.body.classList.toggle('dyslexic-font');
-    }
-
-    function toggleContrast() {
-        document.body.classList.toggle('high-contrast');
-    }
-
-    function changeSpacing() {
-        document.body.style.lineHeight = document.body.style.lineHeight === "2" ? "normal" : "2";
-    }
-
-    function changeCursor() {
-        const newCursor = document.body.style.cursor === "crosshair" ? "default" : "crosshair";
-        document.body.style.cursor = newCursor;
-        const all = document.querySelectorAll('*');
-        all.forEach(el => el.style.cursor = newCursor);
-    }
-
-    // Lógica original de búsqueda (mantenida intacta)
+    // BÚSQUEDA Y QR
     function ejecutarBusqueda(folioKey) {
         if (!folioKey) return;
-        const baseDatos = {}; // Simulación o carga desde folios.js
         const folio = folioKey.trim().toUpperCase();
         const resDiv = document.getElementById('resultado');
+        const errDiv = document.getElementById('error-container');
         const detalle = document.getElementById('infoDetalle');
 
-        if (typeof baseDatos !== 'undefined' && baseDatos[folio]) {
+        resDiv.style.display = 'none';
+        errDiv.style.display = 'none';
+
+        if (window.baseDatos && baseDatos[folio]) {
             const d = baseDatos[folio];
             detalle.innerHTML = `
                 <div class="info-item"><span class="info-label">Nombre del Alumno:</span> <span class="info-value">${d.nombre}</span></div>
@@ -347,27 +191,40 @@
                 <div class="info-item"><span class="info-label">Créditos Totales:</span> <span class="info-value">${d.creditos}</span></div>
                 <div class="info-item"><span class="info-label">Estatus:</span> <span class="badge-registro">${d.estatus}</span></div>
                 <div class="info-item"><span class="info-label">Fecha de Validación:</span> <span class="info-value">${d.timbrado}</span></div>
-                <div class="info-item" style="grid-column: span 2;">
-                    <span class="info-label">Institución / Plantel:</span> 
-                    <span class="info-value">${d.plantel} - ${d.emisor}</span>
-                </div>
+                <div class="info-item" style="grid-column: span 2;"><span class="info-label">Institución:</span> <span class="info-value">${d.plantel} - ${d.emisor}</span></div>
             `;
             resDiv.style.display = 'block';
             resDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            errDiv.style.display = 'block';
+            errDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
 
     function buscar() {
         const folio = document.getElementById('folioInput').value;
-        if (!folio) { alert("Por favor, ingrese un folio."); return; }
+        if (!folio) { alert("Ingrese un folio."); return; }
         ejecutarBusqueda(folio);
     }
 
     function restablecer() {
         document.getElementById('folioInput').value = "";
         document.getElementById('resultado').style.display = 'none';
+        document.getElementById('error-container').style.display = 'none';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // ESTA FUNCIÓN CONSERVA LA LECTURA POR QR
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const folioQR = urlParams.get('folio');
+        if (folioQR) {
+            document.getElementById('folioInput').value = folioQR.toUpperCase();
+            ejecutarBusqueda(folioQR);
+        }
+    };
+
+    document.getElementById('folioInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') buscar(); });
 </script>
 
 </body>

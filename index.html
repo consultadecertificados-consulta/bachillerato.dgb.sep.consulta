@@ -20,7 +20,6 @@
         /* --- ACCESIBILIDAD --- */
         .grayscale-mode { filter: grayscale(100%); }
         .high-contrast { background: #000 !important; color: #fff !important; }
-        .high-contrast .search-container, .high-contrast #resultado { background: #111 !important; color: #fff !important; }
         .increase-text { font-size: 1.2rem; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,7 +27,6 @@
         body {
             font-family: 'Lora', serif;
             background-color: #f4f4f4;
-            transition: all 0.3s ease;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -47,9 +45,6 @@
             background: var(--sep-rojo-obscuro); color: #FFFFFF;
             padding: 12px 10px; border-radius: 0 5px 5px 0; cursor: pointer; z-index: 10000;
         }
-        .acc-item { display: flex; align-items: center; padding: 12px; margin-bottom: 8px; border-radius: 5px; cursor: pointer; background: #f8f8f8; color: #333; font-size: 13px; font-weight: 600; }
-        .acc-item i { margin-right: 10px; color: var(--sep-rojo-obscuro); width: 20px; text-align: center; }
-        .acc-reset-btn { background: var(--sep-rojo-obscuro); color: white; text-align: center; padding: 12px; border-radius: 5px; margin-bottom: 20px; cursor: pointer; font-weight: bold; }
 
         /* --- CABECERA --- */
         nav.gob-header {
@@ -82,65 +77,49 @@
         .btn-buscar { background-color: var(--sep-rojo-obscuro); color: white; padding: 14px; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; }
         .btn-restablecer { background-color: var(--gob-gris-boton); color: white; padding: 14px; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; }
 
-        #mensajeError {
-            display: none; margin-top: 20px; padding: 15px; background: #fdecea; 
-            border: 1px solid var(--error-rojo); color: var(--error-rojo); border-radius: 4px; text-align: left;
-        }
-
-        /* --- RESULTADOS (TODOS LOS CAMPOS) --- */
+        /* --- RESULTADOS --- */
         #resultado { 
             display: none; margin-top: 30px; text-align: left; background: white; 
             padding: 25px; border-radius: 4px; border-left: 5px solid var(--sep-rojo-obscuro);
             box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 40px;
         }
 
-        .grid-resultados { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .info-item { border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; font-family: 'Montserrat', sans-serif; }
-        .info-label { font-weight: 700; color: #333; font-size: 11px; text-transform: uppercase; display: block; margin-bottom: 3px; }
-        .info-value { font-weight: 400; color: #555; font-size: 14px; line-height: 1.4; }
-        .badge-registro { background-color: var(--estatus-verde); color: white; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 12px; display: inline-block; }
+        .contenedor-flexible { display: flex; flex-wrap: wrap; gap: 20px; }
+        .datos-cliente { flex: 1; min-width: 300px; }
+        .contenedor-qr { width: 150px; text-align: center; padding: 10px; border: 1px solid #eee; border-radius: 8px; }
+        .contenedor-qr img { width: 100%; height: auto; }
+        .qr-texto { font-size: 10px; font-family: 'Montserrat'; color: #666; margin-top: 5px; }
 
-        /* --- FOOTER --- */
+        .info-item { border-bottom: 1px solid #f0f0f0; padding: 8px 0; font-family: 'Montserrat', sans-serif; }
+        .info-label { font-weight: 700; color: #333; font-size: 11px; text-transform: uppercase; display: block; }
+        .info-value { font-weight: 400; color: #555; font-size: 14px; }
+        .badge-registro { background-color: var(--estatus-verde); color: white; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 12px; }
+
         footer { background-color: var(--sep-rojo-obscuro); color: white; padding: 40px 15px 20px; font-family: 'Montserrat', sans-serif; margin-top: auto; }
         .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; text-align: left; }
-        .footer-col h4 { font-size: 15px; margin-bottom: 15px; border-bottom: 1px solid var(--gob-oro); display: inline-block; }
-        .footer-col a { color: white; text-decoration: none; display: block; font-size: 12px; margin-bottom: 8px; opacity: 0.8; }
         .footer-bottom { text-align: center; margin-top: 30px; font-size: 10px; opacity: 0.6; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
 
         @media (min-width: 600px) {
             .button-group { flex-direction: row; }
             .btn-buscar, .btn-restablecer { min-width: 160px; }
-            .grid-resultados { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
 <body>
 
-<div class="acc-trigger" onclick="toggleAccPanel()">
-    <i class="fas fa-universal-access fa-2x"></i>
-</div>
-
+<div class="acc-trigger" onclick="toggleAccPanel()"><i class="fas fa-universal-access fa-2x"></i></div>
 <div id="accPanel" class="acc-panel-sidebar">
     <div class="acc-reset-btn" onclick="resetAcc()">Restablecer</div>
-    <div class="acc-item" onclick="toggleGrayscale()"><i class="fas fa-adjust"></i> Escala de grises</div>
-    <div class="acc-item" onclick="toggleContrast()"><i class="fas fa-palette"></i> Alto contraste</div>
-    <div class="acc-item" onclick="toggleTextSize()"><i class="fas fa-text-height"></i> Aumentar texto</div>
-    <div class="acc-item" onclick="toggleAccPanel()"><i class="fas fa-times"></i> Cerrar menú</div>
+    <div class="acc-item" onclick="toggleGrayscale()">Escala de grises</div>
+    <div class="acc-item" onclick="toggleContrast()">Alto contraste</div>
+    <div class="acc-item" onclick="toggleTextSize()">Aumentar texto</div>
 </div>
 
 <nav class="gob-header">
-    <a href="https://www.gob.mx" target="_blank">
-        <img class="logo-gob" src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" alt="Gobierno de México">
-    </a>
-    <ul class="nav-links-gob">
-        <li><a href="https://www.gob.mx/tramites">Trámites</a></li>
-        <li><a href="https://www.gob.mx/gobierno">Gobierno</a></li>
-    </ul>
+    <a href="https://www.gob.mx"><img class="logo-gob" src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg"></a>
 </nav>
 
-<div class="header-image-container">
-    <a href="index.html"><img src="logo.png" alt="SEP"></a>
-</div>
+<div class="header-image-container"><img src="logo.png"></div>
 
 <main>
     <div class="titulos-sep">
@@ -150,44 +129,32 @@
     </div>
 
     <div class="search-container">
-        <p style="text-align: left; font-size: 14px; margin-bottom: 15px; font-family: 'Montserrat';">Ingrese el folio de control:</p>
-        <input type="text" id="folioInput" placeholder="EJ: 123456789" maxlength="30">
+        <input type="text" id="folioInput" placeholder="INGRESE EL FOLIO DE CONTROL">
         <div class="button-group">
             <button class="btn-buscar" onclick="buscar()">CONSULTAR</button>
             <button class="btn-restablecer" onclick="restablecer()">LIMPIAR</button>
-        </div>
-        <div id="mensajeError">
-            <i class="fas fa-exclamation-triangle"></i> Folio no válido o no encontrado. Por favor, verifique la información.
         </div>
     </div>
 
     <div id="resultado">
         <h4 style="font-family: 'Montserrat'; color: var(--sep-rojo-obscuro); margin-bottom: 20px;">Resultado de la Validación</h4>
-        <div id="infoDetalle" class="grid-resultados"></div>
+        
+        <div class="contenedor-flexible">
+            <div id="infoDetalle" class="datos-cliente">
+                </div>
+            
+            <div class="contenedor-qr">
+                <div id="qrcode"></div>
+                <p class="qr-texto">Escanee para validar</p>
+            </div>
+        </div>
     </div>
 </main>
 
 <footer>
     <div class="footer-container">
-        <div class="footer-col">
-            <a href="https://www.gob.mx" target="_blank">
-                <img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="120" style="filter: brightness(0) invert(1);">
-            </a>
-        </div>
-        <div class="footer-col">
-            <h4>Enlaces</h4>
-            <a href="https://participa.gob.mx">Participa</a>
-            <a href="https://www.gob.mx/publicaciones">Publicaciones</a>
-        </div>
-        <div class="footer-col">
-            <h4>Legal</h4>
-            <a href="https://www.gob.mx/privacidad">Privacidad</a>
-            <a href="https://www.gob.mx/terminos">Términos</a>
-        </div>
-        <div class="footer-col">
-            <h4>Contacto</h4>
-            <a href="mailto:controlescolar.estatal@sems.sidgbe.gob.mx">Soporte Técnico</a>
-        </div>
+        <div class="footer-col"><img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="120" style="filter: brightness(0) invert(1);"></div>
+        <div class="footer-col"><h4>Contacto</h4><a href="mailto:controlescolar.estatal@sems.sidgbe.gob.mx">Soporte</a></div>
     </div>
     <div class="footer-bottom">SEP | SEMS | México 2026</div>
 </footer>
@@ -203,69 +170,46 @@
     function buscar() {
         const f = document.getElementById('folioInput').value.trim().toUpperCase();
         const resDiv = document.getElementById('resultado');
-        const errDiv = document.getElementById('mensajeError');
         const detalle = document.getElementById('infoDetalle');
-
-        resDiv.style.display = 'none';
-        errDiv.style.display = 'none';
+        const qrContainer = document.getElementById('qrcode');
 
         if (typeof baseDatos !== 'undefined' && baseDatos[f]) {
-            const d = baseDatos[f];
+            const data = baseDatos[f];
+            let htmlContent = "";
+
+            // ESTO RECORRE AUTOMÁTICAMENTE TODO LO QUE ESCRIBAS EN folios.js
+            for (let clave in data) {
+                let valor = data[clave];
+                let label = clave.replace(/_/g, " ").toUpperCase();
+                
+                if(clave === 'estatus') {
+                    htmlContent += `<div class="info-item"><span class="info-label">${label}:</span><span class="badge-registro">${valor}</span></div>`;
+                } else {
+                    htmlContent += `<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${valor}</span></div>`;
+                }
+            }
             
-            // CONSTRUCCIÓN CON TODOS LOS CAMPOS RESTAURADOS
-            detalle.innerHTML = `
-                <div class="info-item">
-                    <span class="info-label">Nombre del Alumno:</span>
-                    <span class="info-value">${d.nombre}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Matrícula:</span>
-                    <span class="info-value">${d.matricula}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Plan Académico:</span>
-                    <span class="info-value">${d.plan}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Folio de Control:</span>
-                    <span class="info-value">${f}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Promedio Final:</span>
-                    <span class="info-value">${d.promedio || 'N/A'}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Créditos Totales:</span>
-                    <span class="info-value">${d.creditos || 'N/A'}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Fecha de Validación:</span>
-                    <span class="info-value">${d.fecha_validacion || 'N/A'}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Estatus:</span>
-                    <span class="info-value"><span class="badge-registro">${d.estatus}</span></span>
-                </div>
-                <div class="info-item" style="grid-column: 1 / -1;">
-                    <span class="info-label">Institución / Plantel:</span>
-                    <span class="info-value">${d.plantel}</span>
-                </div>
-            `;
-            
+            detalle.innerHTML = htmlContent;
+
+            // GENERADOR DE QR (Servicio de Google)
+            // Crea un link con el folio para que al escanear sepa qué folio es
+            const urlActual = window.location.href.split('?')[0];
+            const linkValidacion = `${urlActual}?folio=${f}`;
+            qrContainer.innerHTML = `<img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${encodeURIComponent(linkValidacion)}&choe=UTF-8">`;
+
             resDiv.style.display = 'block';
-            resDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            resDiv.scrollIntoView({ behavior: 'smooth' });
         } else {
-            errDiv.style.display = 'block';
+            alert("El folio no existe.");
         }
     }
 
     function restablecer() {
         document.getElementById('folioInput').value = "";
         document.getElementById('resultado').style.display = 'none';
-        document.getElementById('mensajeError').style.display = 'none';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
 </body>
 </html>
+     
        

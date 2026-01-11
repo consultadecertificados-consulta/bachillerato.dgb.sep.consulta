@@ -16,6 +16,12 @@
             --estatus-verde: #235E3F;
         }
 
+        /* ACCESIBILIDAD */
+        .grayscale-mode { filter: grayscale(100%); }
+        .high-contrast { background: #000 !important; color: #fff !important; }
+        .high-contrast main, .high-contrast #resultado, .high-contrast .search-container { background: #111 !important; color: #fff !important; }
+        .increase-text { font-size: 1.25rem; }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -26,6 +32,26 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: 0.3s;
+        }
+
+        /* PANEL ACCESIBILIDAD CORREGIDO */
+        .acc-panel-sidebar {
+            position: fixed; left: -320px; top: 0; width: 280px; height: 100vh;
+            background: #fff; z-index: 99999; transition: 0.4s;
+            padding: 25px; font-family: 'Montserrat', sans-serif;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.4);
+        }
+        .acc-panel-sidebar.active { left: 0; }
+        .acc-trigger {
+            position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+            background: var(--sep-rojo-obscuro); color: #FFFFFF;
+            padding: 15px 12px; border-radius: 0 8px 8px 0; cursor: pointer; z-index: 100000;
+        }
+        .acc-item { 
+            display: block; width: 100%; padding: 12px; margin-bottom: 10px; 
+            background: #f0f0f0; border-radius: 6px; cursor: pointer; 
+            text-align: center; font-weight: 600; color: #333; border: none;
         }
 
         /* HEADER */
@@ -40,25 +66,21 @@
         .header-image-container { width: 100%; border-bottom: 6px solid var(--gob-oro); background: #fff; padding: 10px 0; }
         .header-image-container img { width: 100%; max-width: 900px; margin: 0 auto; display: block; height: auto; }
 
-        /* TÍTULOS ESTILO SEP */
+        /* TÍTULOS EN NEGRO ESTILO SEP */
         main { flex: 1; max-width: 900px; margin: 40px auto; padding: 0 15px; width: 100%; }
-        
         .titulos-sep { text-align: center; margin-bottom: 40px; }
-        
         .titulos-sep h2 { 
-            font-family: 'Lora', serif; /* Letra clásica de documento oficial */
+            font-family: 'Lora', serif;
             font-weight: 700; 
             font-size: 2rem; 
-            color: #4B1021; 
+            color: #000000; /* Color Negro solicitado */
             margin-bottom: 10px;
         }
         .titulos-sep h3 { 
             font-family: 'Montserrat', sans-serif;
             font-weight: 400; 
             font-size: 1.2rem; 
-            color: #666; 
-            text-transform: none;
-            letter-spacing: 0px;
+            color: #333333; 
         }
         .linea-decorativa { width: 60px; height: 3px; background: var(--gob-oro); margin: 20px auto; }
 
@@ -71,12 +93,11 @@
         input[type="text"] {
             width: 100%; max-width: 500px; padding: 15px; border: 1px solid #ccc; 
             border-radius: 2px; font-size: 16px; margin-bottom: 25px; text-align: center;
-            font-family: 'Montserrat';
         }
 
         .button-group { display: flex; gap: 15px; justify-content: center; }
-        .btn-buscar { background: var(--sep-rojo-obscuro); color: white; padding: 12px 35px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 14px; }
-        .btn-restablecer { background: var(--gob-gris-boton); color: white; padding: 12px 35px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 14px; }
+        .btn-buscar { background: var(--sep-rojo-obscuro); color: white; padding: 12px 35px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; }
+        .btn-restablecer { background: var(--gob-gris-boton); color: white; padding: 12px 35px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; }
 
         /* RESULTADOS */
         #resultado { 
@@ -84,7 +105,6 @@
             border-radius: 4px; border: 1px solid #ddd;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-        
         .validacion-exito { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; text-align: center; }
         .validacion-exito h4 {
             color: var(--estatus-verde);
@@ -93,18 +113,16 @@
             font-weight: 700;
             margin-bottom: 10px;
         }
-        .validacion-exito p { color: #555; font-size: 1rem; font-family: 'Montserrat'; }
+        .validacion-exito p { color: #555; font-size: 1rem; }
 
         .info-item { border-bottom: 1px solid #f2f2f2; padding: 12px 0; display: flex; justify-content: space-between; align-items: center; }
-        .info-label { font-weight: 600; color: #333; font-size: 12px; text-transform: uppercase; font-family: 'Montserrat'; }
-        .info-value { font-weight: 400; color: #444; font-size: 15px; font-family: 'Montserrat'; text-align: right; }
-        .badge-registro { background: var(--estatus-verde); color: white; padding: 4px 10px; border-radius: 3px; font-weight: 600; font-size: 12px; }
+        .info-label { font-weight: 600; color: #333; font-size: 12px; text-transform: uppercase; }
+        .info-value { font-weight: 400; color: #444; font-size: 15px; text-align: right; }
+        .badge-registro { background: var(--estatus-verde); color: white; padding: 4px 10px; border-radius: 3px; font-weight: 600; }
 
         /* FOOTER */
-        footer { background: var(--sep-rojo-obscuro); color: white; padding: 50px 30px 20px; font-family: 'Montserrat'; margin-top: 60px; }
+        footer { background: var(--sep-rojo-obscuro); color: white; padding: 50px 30px 20px; margin-top: 60px; }
         .footer-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
-        .footer-col h4 { margin-bottom: 20px; border-bottom: 2px solid var(--gob-oro); display: inline-block; padding-bottom: 5px; font-size: 16px; }
-        .footer-col a { color: white; text-decoration: none; display: block; margin-bottom: 10px; font-size: 13px; opacity: 0.8; }
         .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; }
 
         @media (max-width: 600px) {
@@ -115,6 +133,15 @@
     </style>
 </head>
 <body>
+
+<div class="acc-trigger" onclick="toggleAccPanel()"><i class="fas fa-universal-access fa-2x"></i></div>
+<div id="accPanel" class="acc-panel-sidebar">
+    <div class="acc-item" style="background:var(--sep-rojo-obscuro); color:white;" onclick="resetAcc()">Restablecer</div>
+    <div class="acc-item" onclick="toggleGrayscale()">Escala de grises</div>
+    <div class="acc-item" onclick="toggleContrast()">Alto contraste</div>
+    <div class="acc-item" onclick="toggleTextSize()">Aumentar texto</div>
+    <div class="acc-item" onclick="toggleAccPanel()">Cerrar Menú</div>
+</div>
 
 <nav class="gob-header">
     <a href="https://www.gob.mx" target="_blank"><img class="logo-gob" src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg"></a>
@@ -158,18 +185,8 @@
             <img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="150" style="filter: brightness(0) invert(1); margin-bottom: 20px;">
         </div>
         <div class="footer-col">
-            <h4>Enlaces</h4>
-            <a href="https://participa.gob.mx" target="_blank">Participa</a>
-            <a href="https://www.gob.mx/publicaciones" target="_blank">Publicaciones</a>
-        </div>
-        <div class="footer-col">
-            <h4>Legal</h4>
-            <a href="https://www.gob.mx/privacidad" target="_blank">Privacidad</a>
-            <a href="https://www.gob.mx/terminos" target="_blank">Términos</a>
-        </div>
-        <div class="footer-col">
-            <h4>Contacto</h4>
-            <a href="mailto:controlescolar.estatal@sems.sidgbe.gob.mx">Soporte Técnico</a>
+            <h4 style="border-bottom: 2px solid var(--gob-oro); display: inline-block; padding-bottom: 5px; margin-bottom: 20px;">Soporte</h4>
+            <p style="font-size: 13px; opacity: 0.8;">controlescolar.estatal@sems.sidgbe.gob.mx</p>
         </div>
     </div>
     <div class="footer-bottom">SEP | SEMS | Registro Federal de Educación Media Superior | México 2026</div>
@@ -177,6 +194,13 @@
 
 <script src="folios.js"></script>
 <script>
+    // FUNCIONES DE ACCESIBILIDAD
+    function toggleAccPanel() { document.getElementById('accPanel').classList.toggle('active'); }
+    function toggleGrayscale() { document.body.classList.toggle('grayscale-mode'); }
+    function toggleContrast() { document.body.classList.toggle('high-contrast'); }
+    function toggleTextSize() { document.body.classList.toggle('increase-text'); }
+    function resetAcc() { document.body.classList.remove('grayscale-mode', 'high-contrast', 'increase-text'); }
+
     function buscar() {
         const f = document.getElementById('folioInput').value.trim().toUpperCase();
         const resDiv = document.getElementById('resultado');
@@ -190,7 +214,6 @@
         if (typeof baseDatos !== 'undefined' && baseDatos[f]) {
             const d = baseDatos[f];
             let content = "";
-            
             for (let clave in d) {
                 let label = clave.replace(/_/g, ' ').toUpperCase();
                 let valor = d[clave];

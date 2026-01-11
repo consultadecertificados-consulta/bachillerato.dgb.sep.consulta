@@ -27,7 +27,6 @@
         /* ACCESIBILIDAD */
         .grayscale-mode { filter: grayscale(100%); }
         .high-contrast { background: #000 !important; color: #fff !important; }
-        .high-contrast main, .high-contrast #resultado { background: #111 !important; }
         .increase-text { font-size: 1.25rem; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,7 +42,7 @@
             transition: 0.3s;
         }
 
-        /* BOTÓN ACCESIBILIDAD TRANSPARENTE */
+        /* BOTÓN ACCESIBILIDAD */
         .acc-trigger {
             position: fixed; left: 0; top: 50%; transform: translateY(-50%);
             background: var(--sep-rojo-obscuro); color: #FFFFFF;
@@ -65,7 +64,7 @@
             text-align: center; font-weight: 600; color: #333; border: none;
         }
 
-        /* HEADER */
+        /* HEADER GOB */
         nav.gob-header {
             background-color: var(--sep-rojo-obscuro);
             padding: 10px 30px; display: flex; justify-content: space-between; align-items: center;
@@ -74,24 +73,18 @@
         .nav-links-gob { display: flex; gap: 20px; list-style: none; align-items: center; }
         .nav-links-gob a { color: white; text-decoration: none; font-size: 14px; font-family: 'Montserrat'; }
 
-        /* PORTADA DE ESQUINA A ESQUINA */
+        /* PORTADA LARGA ESQUINA A ESQUINA */
         .header-image-container { 
             width: 100%; 
             border-bottom: 6px solid var(--gob-oro); 
             background: #fff; 
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
+            padding: 0; margin: 0; overflow: hidden;
         }
         .header-image-container img { 
-            width: 100%; 
-            display: block; 
-            height: auto; 
-            min-height: 180px; 
-            object-fit: cover;
+            width: 100%; display: block; height: auto; min-height: 180px; object-fit: cover;
         }
 
-        /* CONTENIDO */
+        /* CONTENIDO PRINCIPAL */
         main { flex: 1; max-width: 900px; margin: 30px auto; padding: 0 15px; width: 100%; }
         .titulos-sep { text-align: center; margin-bottom: 30px; font-family: 'Montserrat'; }
         .titulos-sep h2 { color: #000; font-weight: 700; font-size: 1.8rem; margin-bottom: 5px; }
@@ -101,8 +94,7 @@
         .search-container {
             background: #ffffff; border-top: 5px solid var(--sep-rojo-obscuro);
             border-radius: 8px; padding: 40px 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            margin-bottom: 20px;
+            text-align: center; margin-bottom: 20px;
         }
         input[type="text"] {
             width: 100%; max-width: 500px; padding: 15px; border: 2px solid #ddd; 
@@ -112,28 +104,20 @@
         .btn-buscar { background: var(--sep-rojo-obscuro); color: white; padding: 12px 30px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; }
         .btn-restablecer { background: var(--gob-gris-boton); color: white; padding: 12px 30px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; }
 
-        /* DISEÑO DE ERROR (BASADO EN TU IMAGEN) */
+        /* RECUADRO DE ERROR MÁS PEQUEÑO */
         #errorContainer {
             display: none;
             background-color: var(--error-bg);
-            border: 3px solid var(--error-rojo);
-            border-radius: 8px;
-            padding: 40px 20px;
+            border: 2px solid var(--error-rojo);
+            border-radius: 6px;
+            padding: 20px; /* Reducido de 40px */
+            max-width: 600px; /* Limitamos ancho del error */
+            margin: 20px auto;
             text-align: center;
-            margin-top: 30px;
             font-family: 'Montserrat', sans-serif;
         }
-        #errorContainer h3 {
-            color: #545454;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        #errorContainer p {
-            color: #545454;
-            font-size: 28px;
-            font-weight: 400;
-        }
+        #errorContainer h3 { color: #545454; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        #errorContainer p { color: #545454; font-size: 20px; font-weight: 400; }
 
         /* RESULTADOS */
         #resultado { 
@@ -168,17 +152,17 @@
             margin-top: 30px; font-size: 14px; color: #316B8C; line-height: 1.5; font-family: 'Montserrat';
         }
 
-        /* FOOTER */
+        /* PIE DE PÁGINA COMPLETO */
         footer { background: var(--sep-rojo-obscuro); color: white; padding: 50px 30px 20px; font-family: 'Montserrat'; margin-top: 50px; }
         .footer-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-col h4 { margin-bottom: 20px; border-bottom: 2px solid var(--gob-oro); display: inline-block; padding-bottom: 5px; }
+        .footer-col a { color: white; text-decoration: none; display: block; margin-bottom: 10px; font-size: 13px; opacity: 0.8; }
         .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; }
 
-        /* MÓVIL */
         @media (max-width: 600px) {
             nav.gob-header { padding: 10px 15px; }
             .logo-gob { height: 28px; }
             .nav-links-gob { gap: 12px; }
-            .nav-links-gob a { font-size: 12px; }
             .header-image-container img { min-height: 100px; }
             .button-group { flex-direction: column; }
         }
@@ -232,12 +216,32 @@
         <div id="infoDetalle"></div>
         <div class="cards-flex-container" id="tarjetasContainer"></div>
         <div class="aviso-info">
-            <strong>¡Atención!</strong> La información de los certificados que se muestran en este portal, es el resultado de la integración de información que envían las autoridades educativas de los estados y de la Ciudad de México...
+            <strong>¡Atención!</strong> La información de los certificados que se muestran en este portal, es el resultado de la integración de información que envían las autoridades educativas de los estados y de la Ciudad de México.
         </div>
     </div>
 </main>
 
 <footer>
+    <div class="footer-container">
+        <div class="footer-col"><img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="150" style="filter: brightness(0) invert(1); margin-bottom: 20px;"></div>
+        <div class="footer-col">
+            <h4>Enlaces</h4>
+            <a href="https://participa.gob.mx" target="_blank">Participa</a>
+            <a href="https://www.gob.mx/publicaciones" target="_blank">Publicaciones</a>
+            <a href="http://www.ordenjuridico.gob.mx" target="_blank">Orden Jurídico PC</a>
+            <a href="https://pnt.org.mx" target="_blank">PNT</a>
+        </div>
+        <div class="footer-col">
+            <h4>¿Qué es gob.mx?</h4>
+            <a href="https://www.gob.mx/que-es-gobmx" target="_blank">Portal único de trámites.</a>
+            <a href="https://datos.gob.mx" target="_blank">Datos Abiertos</a>
+            <a href="https://www.gob.mx/privacidad" target="_blank">Privacidad</a>
+        </div>
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <a href="mailto:controlescolar.estatal@sems.sidgbe.gob.mx">Soporte Técnico</a>
+        </div>
+    </div>
     <div class="footer-bottom">SEP | SEMS | Registro Federal de Educación Media Superior | México 2026</div>
 </footer>
 
@@ -257,7 +261,6 @@
         const detalle = document.getElementById('infoDetalle');
         const tarjetas = document.getElementById('tarjetasContainer');
 
-        // Limpiar estados previos
         resDiv.style.display = 'none';
         errDiv.style.display = 'none';
 
@@ -285,10 +288,15 @@
             resDiv.style.display = 'block';
             resDiv.scrollIntoView({ behavior: 'smooth' });
         } else {
-            // SI NO EXISTE, MOSTRAR EL RECUADRO ROJO
             errDiv.style.display = 'block';
             errDiv.scrollIntoView({ behavior: 'smooth' });
         }
+    }
+
+    function restablecer() {
+        document.getElementById('folioInput').value = "";
+        document.getElementById('resultado').style.display = 'none';
+        document.getElementById('errorContainer').style.display = 'none';
     }
 
     window.onload = function() {
@@ -298,13 +306,6 @@
             document.getElementById('folioInput').value = folioUrl.trim().toUpperCase();
             buscar();
         }
-    }
-
-    function restablecer() {
-        document.getElementById('folioInput').value = "";
-        document.getElementById('resultado').style.display = 'none';
-        document.getElementById('errorContainer').style.display = 'none';
-        window.history.replaceState({}, document.title, window.location.pathname);
     }
 </script>
 </body>

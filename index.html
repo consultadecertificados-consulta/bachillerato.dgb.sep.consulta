@@ -66,7 +66,7 @@
         .header-image-container { width: 100%; border-bottom: 6px solid var(--gob-oro); background: #fff; padding: 10px 0; }
         .header-image-container img { width: 100%; max-width: 900px; margin: 0 auto; display: block; height: auto; }
 
-        /* TÍTULOS EN NEGRO */
+        /* CONTENIDO */
         main { flex: 1; max-width: 900px; margin: 30px auto; padding: 0 15px; width: 100%; }
         .titulos-sep { text-align: center; margin-bottom: 30px; font-family: 'Montserrat'; }
         .titulos-sep h2 { color: #000; font-weight: 700; font-size: 1.8rem; margin-bottom: 5px; }
@@ -103,9 +103,11 @@
         .info-value { font-weight: 400; color: #555; font-size: 15px; text-align: right; }
         .badge-registro { background: var(--estatus-verde); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 700; }
 
-        /* FOOTER */
+        /* FOOTER CON LINKS PRESERVADOS */
         footer { background: var(--sep-rojo-obscuro); color: white; padding: 50px 30px 20px; font-family: 'Montserrat'; margin-top: 50px; }
         .footer-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-col h4 { margin-bottom: 20px; border-bottom: 2px solid var(--gob-oro); display: inline-block; padding-bottom: 5px; }
+        .footer-col a { color: white; text-decoration: none; display: block; margin-bottom: 10px; font-size: 13px; opacity: 0.8; }
         .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; }
 
         @media (max-width: 600px) {
@@ -167,19 +169,33 @@
         <div class="footer-col">
             <img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="150" style="filter: brightness(0) invert(1); margin-bottom: 20px;">
         </div>
+        <div class="footer-col">
+            <h4>Enlaces</h4>
+            <a href="https://participa.gob.mx" target="_blank">Participa</a>
+            <a href="https://www.gob.mx/publicaciones" target="_blank">Publicaciones</a>
+        </div>
+        <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="https://www.gob.mx/privacidad" target="_blank">Privacidad</a>
+            <a href="https://www.gob.mx/terminos" target="_blank">Términos</a>
+        </div>
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <a href="mailto:controlescolar.estatal@sems.sidgbe.gob.mx">Soporte Técnico</a>
+        </div>
     </div>
     <div class="footer-bottom">SEP | SEMS | Registro Federal de Educación Media Superior | México 2026</div>
 </footer>
 
 <script src="folios.js"></script>
 <script>
-    // ESTA ES LA FUNCIÓN QUE HACE QUE EL ENLACE FUNCIONE COMO EL EJEMPLO
+    // FUNCIÓN PARA CARGA AUTOMÁTICA POR ENLACE (?folio=...)
     window.onload = function() {
         const params = new URLSearchParams(window.location.search);
         const folioUrl = params.get('folio');
         if (folioUrl) {
             document.getElementById('folioInput').value = folioUrl.trim().toUpperCase();
-            buscar(); // Se ejecuta solo
+            buscar();
         }
     }
 
@@ -218,10 +234,8 @@
         document.getElementById('folioInput').value = "";
         document.getElementById('resultado').style.display = 'none';
         document.getElementById('infoDetalle').innerHTML = "";
-        // Limpia la URL también
         window.history.replaceState({}, document.title, window.location.pathname);
     }
 </script>
 </body>
 </html>
-          

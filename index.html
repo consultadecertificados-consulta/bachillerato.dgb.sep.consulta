@@ -28,7 +28,7 @@
             min-height: 100vh;
         }
 
-        /* --- ACCESIBILIDAD (SEP ROJO OBSCURO) --- */
+        /* --- ACCESIBILIDAD --- */
         .acc-panel-sidebar {
             position: fixed; left: -320px; top: 0; width: 300px; height: 100vh;
             background: #EAEAEA; z-index: 9999; transition: 0.3s;
@@ -53,7 +53,7 @@
         }
         .grayscale-mode { filter: grayscale(100%); }
 
-        /* --- NAVEGACIÓN SUPERIOR (SEP ROJO OBSCURO) --- */
+        /* --- CABECERA --- */
         nav.gob-header {
             background-color: var(--sep-rojo-obscuro);
             padding: 10px 50px;
@@ -70,6 +70,7 @@
         }
         .header-image-container img { width: 100%; height: auto; display: block; }
 
+        /* --- CONTENIDO --- */
         main { flex: 1; max-width: 1000px; margin: 40px auto; padding: 0 20px; text-align: center; width: 100%; }
 
         .titulos-sep { margin-bottom: 30px; font-family: 'Montserrat', sans-serif; }
@@ -90,7 +91,6 @@
             font-size: 18px; margin-bottom: 25px; font-family: 'Montserrat', sans-serif; text-transform: uppercase;
         }
 
-        /* --- BOTÓN DE BÚSQUEDA (SEP ROJO OBSCURO) --- */
         .btn-buscar { 
             background-color: var(--sep-rojo-obscuro); 
             color: white; padding: 12px 40px; border: none; border-radius: 4px;
@@ -105,7 +105,7 @@
             font-family: 'Montserrat', sans-serif; cursor: pointer;
         }
 
-        /* --- RESULTADOS (BORDE SEP ROJO OBSCURO) --- */
+        /* --- RESULTADOS --- */
         #resultado { 
             display: none; margin-top: 40px; text-align: left; background: white; 
             padding: 30px; border-radius: 8px; border: 1px solid #ddd;
@@ -117,7 +117,6 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .grid-resultados { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
         .info-item { font-family: 'Montserrat', sans-serif; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
         .info-label { font-weight: 700; color: #333; font-size: 12px; display: block; text-transform: uppercase; }
         .info-value { font-weight: 400; color: #555; font-size: 15px; display: block; margin-top: 3px; }
@@ -127,7 +126,7 @@
             color: white; padding: 3px 10px; border-radius: 4px; font-weight: 700; font-size: 12px;
         }
 
-        /* --- FOOTER (SEP ROJO OBSCURO COMPLETAMENTE) --- */
+        /* --- FOOTER --- */
         footer { 
             background-color: var(--sep-rojo-obscuro); 
             color: white; padding: 50px 0 20px 0; font-family: 'Montserrat', sans-serif; 
@@ -234,8 +233,9 @@
         const resDiv = document.getElementById('resultado');
         const detalle = document.getElementById('infoDetalle');
 
-        if (window.baseDatos && window.baseDatos[folio]) {
-            const d = window.baseDatos[folio];
+        // Acceso directo a baseDatos
+        if (typeof baseDatos !== 'undefined' && baseDatos[folio]) {
+            const d = baseDatos[folio];
             detalle.innerHTML = `
                 <div class="info-item"><span class="info-label">Nombre del Alumno:</span> <span class="info-value">${d.nombre}</span></div>
                 <div class="info-item"><span class="info-label">Matrícula:</span> <span class="info-value">${d.matricula}</span></div>
@@ -246,15 +246,26 @@
                 <div class="info-item" style="grid-column: span 2;"><span class="info-label">Institución:</span> <span class="info-value">${d.plantel}</span></div>
             `;
             resDiv.style.display = 'block';
+            resDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-            alert("No se encontró el folio.");
+            alert("No se encontró el folio en el registro.");
+            resDiv.style.display = 'none';
         }
     }
 
-    function buscar() { ejecutarBusqueda(document.getElementById('folioInput').value); }
-    function restablecer() { location.reload(); }
+    function buscar() { 
+        const f = document.getElementById('folioInput').value;
+        if (!f) { alert("Por favor, ingrese un folio."); return; }
+        ejecutarBusqueda(f); 
+    }
+
+    function restablecer() { 
+        document.getElementById('folioInput').value = "";
+        document.getElementById('resultado').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 </script>
 
 </body>
 </html>
-    
+       

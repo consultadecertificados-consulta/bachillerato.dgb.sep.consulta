@@ -87,7 +87,7 @@
             border: 1px solid var(--error-rojo); color: var(--error-rojo); border-radius: 4px; text-align: left;
         }
 
-        /* --- RESULTADOS (TABLA COMPLETA) --- */
+        /* --- RESULTADOS (TODOS LOS CAMPOS) --- */
         #resultado { 
             display: none; margin-top: 30px; text-align: left; background: white; 
             padding: 25px; border-radius: 4px; border-left: 5px solid var(--sep-rojo-obscuro);
@@ -97,8 +97,8 @@
         .grid-resultados { display: grid; grid-template-columns: 1fr; gap: 20px; }
         .info-item { border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; font-family: 'Montserrat', sans-serif; }
         .info-label { font-weight: 700; color: #333; font-size: 11px; text-transform: uppercase; display: block; margin-bottom: 3px; }
-        .info-value { font-weight: 400; color: #555; font-size: 15px; }
-        .badge-registro { background-color: var(--estatus-verde); color: white; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 12px; }
+        .info-value { font-weight: 400; color: #555; font-size: 14px; line-height: 1.4; }
+        .badge-registro { background-color: var(--estatus-verde); color: white; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 12px; display: inline-block; }
 
         /* --- FOOTER --- */
         footer { background-color: var(--sep-rojo-obscuro); color: white; padding: 40px 15px 20px; font-family: 'Montserrat', sans-serif; margin-top: auto; }
@@ -151,13 +151,13 @@
 
     <div class="search-container">
         <p style="text-align: left; font-size: 14px; margin-bottom: 15px; font-family: 'Montserrat';">Ingrese el folio de control:</p>
-        <input type="text" id="folioInput" placeholder="" maxlength="30">
+        <input type="text" id="folioInput" placeholder="EJ: 123456789" maxlength="30">
         <div class="button-group">
             <button class="btn-buscar" onclick="buscar()">CONSULTAR</button>
             <button class="btn-restablecer" onclick="restablecer()">LIMPIAR</button>
         </div>
         <div id="mensajeError">
-            <i class="fas fa-exclamation-triangle"></i> Folio no válido o no encontrado.
+            <i class="fas fa-exclamation-triangle"></i> Folio no válido o no encontrado. Por favor, verifique la información.
         </div>
     </div>
 
@@ -212,7 +212,7 @@
         if (typeof baseDatos !== 'undefined' && baseDatos[f]) {
             const d = baseDatos[f];
             
-            // CONSTRUCCIÓN COMPLETA DE DATOS SEGÚN TU HTML ORIGINAL
+            // CONSTRUCCIÓN CON TODOS LOS CAMPOS RESTAURADOS
             detalle.innerHTML = `
                 <div class="info-item">
                     <span class="info-label">Nombre del Alumno:</span>
@@ -235,11 +235,19 @@
                     <span class="info-value">${d.promedio || 'N/A'}</span>
                 </div>
                 <div class="info-item">
+                    <span class="info-label">Créditos Totales:</span>
+                    <span class="info-value">${d.creditos || 'N/A'}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Fecha de Validación:</span>
+                    <span class="info-value">${d.fecha_validacion || 'N/A'}</span>
+                </div>
+                <div class="info-item">
                     <span class="info-label">Estatus:</span>
                     <span class="info-value"><span class="badge-registro">${d.estatus}</span></span>
                 </div>
                 <div class="info-item" style="grid-column: 1 / -1;">
-                    <span class="info-label">Institución:</span>
+                    <span class="info-label">Institución / Plantel:</span>
                     <span class="info-value">${d.plantel}</span>
                 </div>
             `;
@@ -260,3 +268,4 @@
 </script>
 </body>
 </html>
+       

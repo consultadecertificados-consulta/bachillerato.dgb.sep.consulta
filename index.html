@@ -29,7 +29,7 @@
             min-height: 100vh;
         }
 
-        /* --- ACCESIBILIDAD --- */
+        /* --- ACCESIBILIDAD (Icono Blanco) --- */
         .acc-panel-sidebar {
             position: fixed; left: -320px; top: 0; width: 280px; height: 100vh;
             background: #EAEAEA; z-index: 9999; transition: 0.3s;
@@ -40,19 +40,18 @@
         .acc-panel-sidebar.active { left: 0; }
         .acc-trigger {
             position: fixed; left: 0; top: 50%; transform: translateY(-50%);
-            background: var(--sep-rojo-obscuro); color: white; padding: 12px 8px;
-            border-radius: 0 5px 5px 0; cursor: pointer; z-index: 10000;
+            background: var(--sep-rojo-obscuro); color: #FFFFFF; /* Color Blanco */
+            padding: 12px 10px; border-radius: 0 5px 5px 0; cursor: pointer; z-index: 10000;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
 
-        /* --- CABECERA AJUSTADA (LOGO ESQUINADO) --- */
+        /* --- CABECERA --- */
         nav.gob-header {
             background-color: var(--sep-rojo-obscuro);
-            padding: 10px 15px; /* Padding reducido para esquinar el logo */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 10px 15px;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .logo-gob { height: 35px; }
+        .logo-gob { height: 35px; cursor: pointer; }
         .nav-links-gob { display: flex; gap: 15px; list-style: none; }
         .nav-links-gob a { color: white; text-decoration: none; font-size: 13px; font-family: 'Montserrat', sans-serif; }
 
@@ -65,8 +64,8 @@
         main { flex: 1; max-width: 900px; margin: 20px auto; padding: 0 15px; text-align: center; width: 100%; }
 
         .titulos-sep { margin-bottom: 25px; font-family: 'Montserrat', sans-serif; }
-        .titulos-sep h2 { font-weight: 700; font-size: 1.4rem; color: #444; line-height: 1.2; }
-        .titulos-sep h3 { font-weight: 400; font-size: 1rem; color: #666; margin-top: 10px; }
+        .titulos-sep h2 { font-weight: 700; font-size: 1.4rem; color: #444; }
+        .titulos-sep h3 { font-weight: 400; font-size: 1rem; color: #666; margin-top: 5px; }
         .titulos-sep .linea-decorativa { width: 50px; height: 3px; background: var(--gob-oro); margin: 15px auto; }
 
         .search-container {
@@ -116,7 +115,7 @@
         .footer-bottom { text-align: center; margin-top: 30px; font-size: 10px; opacity: 0.6; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
 
         @media (min-width: 600px) {
-            nav.gob-header { padding: 10px 30px; } /* Ajuste de espacio en PC */
+            nav.gob-header { padding: 10px 30px; }
             .button-group { flex-direction: row; }
             .btn-buscar, .btn-restablecer { width: auto; min-width: 160px; }
             .grid-resultados { grid-template-columns: 1fr 1fr; }
@@ -127,7 +126,7 @@
 <body>
 
 <div class="acc-trigger" onclick="document.getElementById('accPanel').classList.toggle('active')">
-    <i class="fas fa-universal-access fa-2x"></i>
+    <i class="fas fa-universal-access fa-2x" style="color: #FFFFFF;"></i>
 </div>
 
 <div id="accPanel" class="acc-panel-sidebar">
@@ -136,15 +135,20 @@
 </div>
 
 <nav class="gob-header">
-    <img class="logo-gob" src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" alt="Gobierno de México">
+    <a href="https://www.gob.mx" target="_blank">
+        <img class="logo-gob" src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" alt="Gobierno de México">
+    </a>
     <ul class="nav-links-gob">
-        <li><a href="#">Trámites</a></li>
-        <li><a href="#">Gobierno</a></li>
+        <li><a href="https://www.gob.mx/tramites" target="_blank">Trámites</a></li>
+        <li><a href="https://www.gob.mx/gobierno" target="_blank">Gobierno</a></li>
+        <li><a href="https://www.gob.mx/busqueda" target="_blank"><i class="fas fa-search"></i></a></li>
     </ul>
 </nav>
 
 <div class="header-image-container">
-    <img src="logo.png" alt="SEP">
+    <a href="index.html">
+        <img src="logo.png" alt="SEP INICIO">
+    </a>
 </div>
 
 <main>
@@ -165,12 +169,12 @@
 
         <div id="mensajeError">
             <i class="fas fa-exclamation-triangle"></i> 
-            <strong>Error:</strong> El folio ingresado no existe o es incorrecto. Por favor, verifíquelo.
+            <strong>Error:</strong> Folio no válido o no encontrado. Verifique la información.
         </div>
     </div>
 
     <div id="resultado">
-        <h4 style="font-family: 'Montserrat'; color: var(--sep-rojo-obscuro); margin-bottom: 15px;">Resultado de la Validación</h4>
+        <h4 style="font-family: 'Montserrat'; color: var(--sep-rojo-obscuro); margin-bottom: 15px;">Localización de Documento</h4>
         <div id="infoDetalle" class="grid-resultados"></div>
     </div>
 </main>
@@ -178,19 +182,27 @@
 <footer>
     <div class="footer-container">
         <div class="footer-col">
-            <img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="120" style="filter: brightness(0) invert(1);">
+            <a href="https://www.gob.mx" target="_blank">
+                <img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="120" style="filter: brightness(0) invert(1);">
+            </a>
         </div>
         <div class="footer-col">
             <h4>Enlaces</h4>
-            <a href="#">Participa</a>
-            <a href="#">Privacidad</a>
+            <a href="https://participa.gob.mx" target="_blank">Participa</a>
+            <a href="https://www.gob.mx/publicaciones" target="_blank">Publicaciones Oficiales</a>
+            <a href="http://www.ordenjuridico.gob.mx" target="_blank">Marco Jurídico</a>
+        </div>
+        <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="https://www.gob.mx/aviso_de_privacidad" target="_blank">Aviso de Privacidad</a>
+            <a href="https://www.gob.mx/terminos" target="_blank">Términos y Condiciones</a>
         </div>
         <div class="footer-col">
             <h4>Contacto</h4>
-            <a href="mailto:controlescolar.estatal@sems.sidgbe.gob.mx">Mesa de ayuda</a>
+            <a href="mailto:controlescolar.estatal@sems.sidgbe.gob.mx">Soporte Técnico</a>
         </div>
     </div>
-    <div class="footer-bottom">SEP | SEMS | México 2026</div>
+    <div class="footer-bottom">SEP | SEMS | Registro Federal de Educación Media Superior | México 2026</div>
 </footer>
 
 <script src="folios.js"></script>
@@ -206,10 +218,7 @@
         resDiv.style.display = 'none';
         errDiv.style.display = 'none';
 
-        if (!folio) {
-            alert("Por favor, ingrese un folio.");
-            return;
-        }
+        if (!folio) { alert("Por favor, ingrese un folio."); return; }
 
         if (typeof baseDatos !== 'undefined' && baseDatos[folio]) {
             const d = baseDatos[folio];
@@ -232,6 +241,7 @@
         document.getElementById('folioInput').value = "";
         document.getElementById('resultado').style.display = 'none';
         document.getElementById('mensajeError').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
 

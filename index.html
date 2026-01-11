@@ -29,7 +29,7 @@
             min-height: 100vh;
         }
 
-        /* --- ACCESIBILIDAD RESPONSIVA --- */
+        /* --- ACCESIBILIDAD --- */
         .acc-panel-sidebar {
             position: fixed; left: -320px; top: 0; width: 280px; height: 100vh;
             background: #EAEAEA; z-index: 9999; transition: 0.3s;
@@ -44,14 +44,13 @@
             border-radius: 0 5px 5px 0; cursor: pointer; z-index: 10000;
         }
 
-        /* --- CABECERA --- */
+        /* --- CABECERA AJUSTADA (LOGO ESQUINADO) --- */
         nav.gob-header {
             background-color: var(--sep-rojo-obscuro);
-            padding: 10px 5%;
+            padding: 10px 15px; /* Padding reducido para esquinar el logo */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
         }
         .logo-gob { height: 35px; }
         .nav-links-gob { display: flex; gap: 15px; list-style: none; }
@@ -62,7 +61,7 @@
         }
         .header-image-container img { width: 100%; max-width: 1000px; margin: 0 auto; display: block; height: auto; }
 
-        /* --- CONTENIDO PRINCIPAL --- */
+        /* --- CONTENIDO --- */
         main { flex: 1; max-width: 900px; margin: 20px auto; padding: 0 15px; text-align: center; width: 100%; }
 
         .titulos-sep { margin-bottom: 25px; font-family: 'Montserrat', sans-serif; }
@@ -89,7 +88,6 @@
         .btn-buscar { background-color: var(--sep-rojo-obscuro); color: white; }
         .btn-restablecer { background-color: var(--gob-gris-boton); color: white; }
 
-        /* --- MENSAJE DE ERROR --- */
         #mensajeError {
             display: none; margin-top: 20px; padding: 15px;
             background-color: #fdecea; border: 1px solid var(--error-rojo);
@@ -97,7 +95,6 @@
             font-size: 14px; text-align: left;
         }
 
-        /* --- RESULTADOS --- */
         #resultado { 
             display: none; margin-top: 30px; text-align: left; background: white; 
             padding: 20px; border-radius: 4px; border: 1px solid #ddd;
@@ -111,25 +108,19 @@
         .info-value { font-weight: 400; color: #555; font-size: 14px; margin-top: 2px; }
         .badge-registro { background-color: var(--sep-rojo-obscuro); color: white; padding: 2px 8px; border-radius: 3px; font-weight: 700; font-size: 11px; }
 
-        /* --- FOOTER RESPONSIVO --- */
+        /* --- FOOTER --- */
         footer { background-color: var(--sep-rojo-obscuro); color: white; padding: 40px 5% 20px; font-family: 'Montserrat', sans-serif; margin-top: auto; }
         .footer-container { display: flex; flex-direction: column; gap: 30px; max-width: 1000px; margin: 0 auto; }
         .footer-col h4 { font-size: 15px; margin-bottom: 15px; border-bottom: 1px solid var(--gob-oro); display: inline-block; }
         .footer-col a { color: white; text-decoration: none; display: block; font-size: 12px; margin-bottom: 8px; opacity: 0.8; }
         .footer-bottom { text-align: center; margin-top: 30px; font-size: 10px; opacity: 0.6; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
 
-        /* --- QUERIES PARA MÓVILES Y DESKTOP --- */
         @media (min-width: 600px) {
-            .titulos-sep h2 { font-size: 1.8rem; }
+            nav.gob-header { padding: 10px 30px; } /* Ajuste de espacio en PC */
             .button-group { flex-direction: row; }
             .btn-buscar, .btn-restablecer { width: auto; min-width: 160px; }
             .grid-resultados { grid-template-columns: 1fr 1fr; }
             .footer-container { flex-direction: row; justify-content: space-between; }
-        }
-
-        @media (max-width: 480px) {
-            nav.gob-header { justify-content: center; gap: 10px; }
-            .nav-links-gob { display: none; } /* Ocultar links en móviles muy pequeños para limpiar */
         }
     </style>
 </head>
@@ -174,7 +165,7 @@
 
         <div id="mensajeError">
             <i class="fas fa-exclamation-triangle"></i> 
-            <strong>Error:</strong> El folio ingresado no existe en nuestra base de datos o es incorrecto. Por favor, verifíquelo e intente de nuevo.
+            <strong>Error:</strong> El folio ingresado no existe o es incorrecto. Por favor, verifíquelo.
         </div>
     </div>
 
@@ -212,7 +203,6 @@
         const errDiv = document.getElementById('mensajeError');
         const detalle = document.getElementById('infoDetalle');
 
-        // Ocultar estados anteriores
         resDiv.style.display = 'none';
         errDiv.style.display = 'none';
 
@@ -221,7 +211,6 @@
             return;
         }
 
-        // Verificar si baseDatos existe y tiene el folio
         if (typeof baseDatos !== 'undefined' && baseDatos[folio]) {
             const d = baseDatos[folio];
             detalle.innerHTML = `
@@ -235,7 +224,6 @@
             resDiv.style.display = 'block';
             resDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-            // MOSTRAR ERROR SI NO EXISTE
             errDiv.style.display = 'block';
         }
     }
@@ -249,4 +237,3 @@
 
 </body>
 </html>
-      

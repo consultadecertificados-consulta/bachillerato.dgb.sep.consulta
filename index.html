@@ -32,7 +32,7 @@
             transition: 0.3s;
         }
 
-        /* --- PANEL ACCESIBILIDAD (Corregido) --- */
+        /* --- PANEL ACCESIBILIDAD --- */
         .acc-panel-sidebar {
             position: fixed; left: -320px; top: 0; width: 280px; height: 100vh;
             background: #fff; z-index: 99999; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -44,7 +44,6 @@
             position: fixed; left: 0; top: 50%; transform: translateY(-50%);
             background: var(--sep-rojo-obscuro); color: #FFFFFF;
             padding: 15px 12px; border-radius: 0 8px 8px 0; cursor: pointer; z-index: 100000;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
         }
         .acc-item { 
             display: block; width: 100%; padding: 12px; margin-bottom: 10px; 
@@ -83,7 +82,7 @@
         .btn-buscar { background: var(--sep-rojo-obscuro); color: white; padding: 15px 40px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; }
         .btn-restablecer { background: var(--gob-gris-boton); color: white; padding: 15px 40px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; }
 
-        /* --- RESULTADOS Y QR --- */
+        /* --- RESULTADOS --- */
         #resultado { 
             display: none; margin-top: 40px; background: white; padding: 30px; 
             border-radius: 8px; border-left: 8px solid var(--sep-rojo-obscuro);
@@ -91,19 +90,18 @@
         }
         .contenedor-flexible { display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; }
         .datos-cliente { flex: 2; min-width: 300px; }
-        .contenedor-qr { flex: 1; min-width: 180px; text-align: center; border: 1px solid #eee; padding: 15px; border-radius: 10px; }
+        .contenedor-qr { flex: 1; min-width: 180px; text-align: center; padding: 10px; }
         
         .info-item { border-bottom: 1px solid #eee; padding: 10px 0; }
         .info-label { font-weight: 700; color: #333; font-size: 12px; text-transform: uppercase; display: block; font-family: 'Montserrat'; }
         .info-value { font-weight: 400; color: #555; font-size: 15px; }
         .badge-registro { background: var(--estatus-verde); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 700; }
 
-        /* --- FOOTER (Corregido) --- */
+        /* --- FOOTER --- */
         footer { background: var(--sep-rojo-obscuro); color: white; padding: 50px 30px 20px; font-family: 'Montserrat'; margin-top: 50px; }
         .footer-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
         .footer-col h4 { margin-bottom: 20px; border-bottom: 2px solid var(--gob-oro); display: inline-block; padding-bottom: 5px; }
         .footer-col a { color: white; text-decoration: none; display: block; margin-bottom: 10px; font-size: 13px; opacity: 0.8; }
-        .footer-col a:hover { opacity: 1; text-decoration: underline; }
         .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; }
 
         @media (max-width: 600px) {
@@ -155,7 +153,6 @@
             <div id="infoDetalle" class="datos-cliente"></div>
             <div class="contenedor-qr">
                 <div id="qrcode"></div>
-                <p style="font-size: 10px; margin-top: 10px; font-family: 'Montserrat';">CÓDIGO DE VALIDACIÓN OFICIAL</p>
             </div>
         </div>
     </div>
@@ -165,22 +162,20 @@
     <div class="footer-container">
         <div class="footer-col">
             <img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="150" style="filter: brightness(0) invert(1); margin-bottom: 20px;">
-            <p style="font-size: 12px; opacity: 0.7;">Secretaría de Educación Pública</p>
         </div>
         <div class="footer-col">
             <h4>Enlaces</h4>
             <a href="https://participa.gob.mx" target="_blank">Participa</a>
             <a href="https://www.gob.mx/publicaciones" target="_blank">Publicaciones</a>
-            <a href="http://www.ordenjuridico.gob.mx" target="_blank">Marco Jurídico</a>
         </div>
         <div class="footer-col">
             <h4>Legal</h4>
-            <a href="https://www.gob.mx/privacidad" target="_blank">Aviso de Privacidad</a>
-            <a href="https://www.gob.mx/terminos" target="_blank">Términos y Condiciones</a>
+            <a href="https://www.gob.mx/privacidad" target="_blank">Privacidad</a>
+            <a href="https://www.gob.mx/terminos" target="_blank">Términos</a>
         </div>
         <div class="footer-col">
             <h4>Contacto</h4>
-            <a href="mailto:controlescolar.estatal@sems.sidgbe.gob.mx">Soporte Técnico SEMS</a>
+            <a href="mailto:controlescolar.estatal@sems.sidgbe.gob.mx">Soporte Técnico</a>
         </div>
     </div>
     <div class="footer-bottom">SEP | SEMS | Registro Federal de Educación Media Superior | México 2026</div>
@@ -188,10 +183,10 @@
 
 <script src="folios.js"></script>
 <script>
-    // FUNCIONALIDAD QR AL CARGAR (Para que el QR funcione al escanear)
+    // AUTO-BÚSQUEDA AL ESCANEAR QR
     window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const folioUrl = urlParams.get('folio');
+        const params = new URLSearchParams(window.location.search);
+        const folioUrl = params.get('folio');
         if (folioUrl) {
             document.getElementById('folioInput').value = folioUrl;
             buscar();
@@ -205,7 +200,7 @@
     function toggleTextSize() { document.body.classList.toggle('increase-text'); }
     function resetAcc() { document.body.classList.remove('grayscale-mode', 'high-contrast', 'increase-text'); }
 
-    // BÚSQUEDA Y QR FUNCIONAL
+    // BÚSQUEDA DINÁMICA
     function buscar() {
         const f = document.getElementById('folioInput').value.trim().toUpperCase();
         const resDiv = document.getElementById('resultado');
@@ -216,38 +211,36 @@
             const d = baseDatos[f];
             let content = "";
             
-            // Muestra TODOS los datos que existan en folios.js
+            // Recorre todos los campos de folios.js automáticamente
             for (let clave in d) {
                 let label = clave.replace(/_/g, ' ').toUpperCase();
                 let valor = d[clave];
-                
                 if(clave.toLowerCase() === 'estatus') {
                     content += `<div class="info-item"><span class="info-label">${label}:</span><span class="badge-registro">${valor}</span></div>`;
                 } else {
                     content += `<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${valor}</span></div>`;
                 }
             }
-            
             detalle.innerHTML = content;
 
-            // GENERAR QR QUE APUNTE AL RESULTADO DIRECTO
-            const urlBase = window.location.href.split('?')[0];
-            const urlFinal = `${urlBase}?folio=${f}`;
-            qrDiv.innerHTML = `<img src="https://chart.googleapis.com/chart?chs=180x180&cht=qr&chl=${encodeURIComponent(urlFinal)}&choe=UTF-8" style="width:100%; height:auto;">`;
+            // Genera el QR de acceso directo (URL + Folio)
+            const urlLimpia = window.location.href.split('?')[0];
+            const urlQR = `${urlLimpia}?folio=${f}`;
+            qrDiv.innerHTML = `<img src="https://chart.googleapis.com/chart?chs=180x180&cht=qr&chl=${encodeURIComponent(urlQR)}&choe=UTF-8" style="width:100%; height:auto;">`;
 
             resDiv.style.display = 'block';
             resDiv.scrollIntoView({ behavior: 'smooth' });
         } else {
-            alert("El folio ingresado no fue localizado.");
+            alert("El folio no existe en nuestra base de datos.");
         }
     }
 
     function restablecer() {
         document.getElementById('folioInput').value = "";
         document.getElementById('resultado').style.display = 'none';
+        // Limpia la URL para que no quede el folio ahí
         window.history.replaceState({}, document.title, window.location.pathname);
     }
 </script>
 </body>
 </html>
-           

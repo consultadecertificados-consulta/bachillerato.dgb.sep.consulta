@@ -63,6 +63,7 @@ const baseDatos = {
     "CBG3760391247": { nombre: "JULIETA VENEGAS P.", matricula: "1648M470772", emisor: "DGB BAJA CALIFORNIA", plantel: "02EEX0088V", plan: "BACHILLERATO GENERAL", promedio: "8.0", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-11-28 12:40:44" },
     "CBG3760391248": { nombre: "KEVIN ROLDÁN S.", matricula: "1649R460115", emisor: "DGB TABASCO", plantel: "27DEX0055N", plan: "BACHILLERATO GENERAL", promedio: "8.6", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-11-29 13:50:55" },
     "CBG3760391249": { nombre: "LUCERO HOZANZA M.", matricula: "1650M450448", emisor: "DGB MORELOS", plantel: "17EEX0011C", plan: "BACHILLERATO GENERAL", promedio: "9.1", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-11-29 16:15:33" }
+    "CBG3760390000": { nombre: "LUCERO HOZANZA M.", matricula: "1650M450448", emisor: "DGB MORELOS", plantel: "17EEX0011C", plan: "BACHILLERATO GENERAL", promedio: "9.1", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-11-29 16:15:33" },
 
 };
 

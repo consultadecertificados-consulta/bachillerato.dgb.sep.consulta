@@ -21,7 +21,7 @@ const baseDatos = {
     "CBG3760391205": { nombre: "KARLA MONSERRAT DIMAS ARROYO", matricula: "1606M890776", emisor: "DIRECCION GENERAL DE PREPARATORIA ABIERTA DE MICHOACAN", plantel: "16EEX0001A", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-09-25 16:20:11" },
     "CBG3760391206": { nombre: "JOEL ALMAGUER TREVIÑO", matricula: "1607R880229", emisor: "DIRECCION GENERAL DE BACHILLERATO DE NUEVO LEON", plantel: "19EEX0001Y", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-09-25 16:20:11" },
     "CBG3760391207": { nombre: "FELIPE ANGEL GARCIA MONSIVAIS", matricula: "1608M870552", emisor: "DIRECCION GENERAL DE BACHILLERATO DE NUEVO LEON", plantel: "19EEX0001Y", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-09-25 16:20:11" },
-    "CBG3760391208": { nombre: "MARIA DEL ROSARIO TORRES QUINTERO", matricula: "1609R860885", emisor: "DIRECCION GENERAL DE BACHILLERATO DE JALISCO", plantel: "14EEX0001C", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-09-25 16:20:11" },
+    "CBG376039120-": { nombre: "VICTOREL FLORES PEREZ", matricula: "1609R860885", emisor: "DIRECCION GENERAL DE BACHILLERATO CIUDAD DE MEXICO", plantel: "09DEX0004P", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-09-25 16:20:11" },
     "CBG3760391209": { nombre: "JORGE LUIS LOPEZ CRUZ", matricula: "1610M850118", emisor: "DGB GUANAJUATO", plantel: "11DEX0089W", plan: "BACHILLERATO GENERAL", promedio: "8.6", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-11-09 11:25:33" },
     "CBG3760391210": { nombre: "XIMENA NAVARRO REYES", matricula: "1611R840441", emisor: "DGB MICHOACÁN", plantel: "16EEX0055V", plan: "BACHILLERATO GENERAL", promedio: "8.9", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-11-10 13:12:11" },
     "CBG3760391211": { nombre: "ALBERTO DIAZ GOMEZ", matricula: "1612M830774", emisor: "DGB HIDALGO", plantel: "13DEX0011B", plan: "BACHILLERATO GENERAL", promedio: "8.1", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-11-10 15:40:50" },
@@ -63,9 +63,10 @@ const baseDatos = {
     "CBG3760391247": { nombre: "JULIETA VENEGAS P.", matricula: "1648M470772", emisor: "DGB BAJA CALIFORNIA", plantel: "02EEX0088V", plan: "BACHILLERATO GENERAL", promedio: "8.0", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-11-28 12:40:44" },
     "CBG3760391248": { nombre: "KEVIN ROLDÁN S.", matricula: "1649R460115", emisor: "DGB TABASCO", plantel: "27DEX0055N", plan: "BACHILLERATO GENERAL", promedio: "8.6", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-11-29 13:50:55" },
     "CBG3760391249": { nombre: "LUCERO HOZANZA M.", matricula: "1650M450448", emisor: "DGB MORELOS", plantel: "17EEX0011C", plan: "BACHILLERATO GENERAL", promedio: "9.1", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-11-29 16:15:33" }
-    "CBG3760390000": { nombre: "LUCERO HOZANZA M.", matricula: "1650M450448", emisor: "DGB MORELOS", plantel: "17EEX0011C", plan: "BACHILLERATO GENERAL", promedio: "9.1", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-11-29 16:15:33" },
 
 };
+
+
 
 
 

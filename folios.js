@@ -1,8 +1,8 @@
 // folios.js - Contenedor externo de certificados SEMS
 const baseDatos = {
     
-    "CBG3760391315": { nombre: "....", matricula: "1765M326565", emisor: "DGB JALISCO", plantel: "14EEX0011H", plan: "BACHILLERATO GENERAL", promedio: "9.3", creditos: "360", estatus: "REGISTRADO", timbrado: "2026-01-18 15:20:36" },
-    "CBG3760391316": { nombre: "QUINO RIVAS LUNA", matricula: "1766R316666", emisor: "DGB CIUDAD DE MÉXICO", plantel: "09DEX0441M", plan: "BACHILLERATO GENERAL", promedio: "7.9", creditos: "360", estatus: "REGISTRADO", timbrado: "2026-01-18 15:25:47" },
+    "CBG3760391315": { nombre: "MARLON AMADOR GUEVARA SALAZAR", matricula: "1765M326565", emisor: "DIRECCIÓN GENERAL DE BACHILLERATO ABIERTO  DEL ESTADO DE COAHUILA", plantel: "RAMOS ARIZPE 14EEX0001C", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.6", periodo: "21-07-2023 al 15-08-2025", estatus: "REGISTRADO", timbrado: "2025-08-25 21:00:00" },
+    "CBG3760391316": { nombre: "---------", matricula: "1766R316666", emisor: "DGB CIUDAD DE MÉXICO", plantel: "09DEX0441M", plan: "BACHILLERATO GENERAL", promedio: "7.9", creditos: "360", estatus: "REGISTRADO", timbrado: "2026-01-18 15:25:47" },
         "CBG3760391317": { nombre: "ROBERTO SILVA MEZA", matricula: "1767M306767", emisor: "DGB NUEVO LEÓN", plantel: "19DEX0110Q", plan: "BACHILLERATO GENERAL", promedio: "8.6", creditos: "360", estatus: "REGISTRADO", timbrado: "2026-01-18 15:30:58" },
     "CBG3760391318": { nombre: "SARA VARGAS ORTIZ", matricula: "1768R296868", emisor: "DGB PUEBLA", plantel: "21DEX0055V", plan: "BACHILLERATO GENERAL", promedio: "9.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2026-01-18 15:35:09" },
     "CBG3760391319": { nombre: "TOMAS PONCE REYES", matricula: "1769M286969", emisor: "DGB VERACRUZ", plantel: "30EEX0012C", plan: "BACHILLERATO GENERAL", promedio: "8.2", creditos: "360", estatus: "REGISTRADO", timbrado: "2026-01-18 15:40:20" },

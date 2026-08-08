@@ -1,4 +1,4 @@
-9// folios.js - Contenedor externo de certificados SEMS
+// folios.js - Contenedor externo de certificados SEMS
 const baseDatos = {
 
      "CBG376039125500": { nombre: "RICARDO MARTINEZ CASANOVA", matricula: "1701M960101", emisor: "DIRECCIÓN GENERAL DE BACHILLERATO ABIERTO DE LA CIUDAD DE MÉXICO", plantel: "IZTAPALAPA CCT-09GBH0007V", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", periodo: "21-07-2021 al 15-08-2022", estatus: "REGISTRADO", timbrado: "2022-08-25 16:20:11" },

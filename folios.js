@@ -1,6 +1,6 @@
-
-// folios.js - Base de datos actualizada
+9// folios.js - Contenedor externo de certificados SEMS
 const baseDatos = {
+
      "CBG376039125500": { nombre: "RICARDO MARTINEZ CASANOVA", matricula: "1701M960101", emisor: "DIRECCIÓN GENERAL DE BACHILLERATO ABIERTO DE LA CIUDAD DE MÉXICO", plantel: "IZTAPALAPA CCT-09GBH0007V", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", periodo: "21-07-2021 al 15-08-2022", estatus: "REGISTRADO", timbrado: "2022-08-25 16:20:11" },
     "CBG376039125100": { nombre: "ISRAEL INDA DELGADO", matricula: "1702R950202", emisor: "DIRECCION GENERAL DE BACHILLERATO DEL ESTADO DE AGUASCALIENTES", plantel: "AGUASCALIENTES CCT-01EEX0001Z", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", periodo: "21-07-2016 al 15-08-2018", estatus: "REGISTRADO", timbrado: "2018-08-25 16:20:11" },
     "CBG376039125200": { nombre: "EDUARDO LOPEZ ZAMORA", matricula: "1703M940303", emisor: "DIRECCION GENERAL DE BACHILLERATO DEL ESTADO DE MÉXICO", plantel: "ATLAUTLA CCT-15DEX0001C", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", periodo: "21-07-2023 al 15-08-2025", estatus: "REGISTRADO", timbrado: "2025-08-25 16:20:11" },
@@ -63,9 +63,9 @@ const baseDatos = {
     "CBG37603910031317": { nombre: "DANIELA MONTEJO MORALES",curp:"MOMD990911MTCNRN07", matricula: "DG-1763M346363", emisor: "PREPARATORIA ABIERTA DEL ESTADO DE TABASCO", plantel: "JALAPA CCT-27EEX0001M", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5 OCHO PUNTO CINCO", periodo: "21-07-2023 al 15-08-2025", estatus: "VALIDO", timbrado: "2025-08-25 16:20:11" },
     "CBG37603913131001": { nombre: "OSWALDO ANTONIO SANCHEZ AGUILAR",curp:"SAAO931012HMCNGS00", matricula: "DG-1763M346363", emisor: "PREPARATORIA ABIERTA DEL ESTADO DE MÉXICO", plantel: "JOCOTITLÁN CCT- 15DEX0001C", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5 OCHO PUNTO CINCO", periodo: "21-07-2023 al 15-08-2025", estatus: "VALIDO", timbrado: "2025-08-25 16:20:11" },
     "CBG37603913140011": { nombre: "VICTORIA JANETH CADENA HERNANDEZ",curp:"CAHV070326MSLDRCA6", matricula: "DG-1764R336464", emisor: "PREPARATORIA ABIERTA DEL ESTADO DE SINALOA", plantel: "CULIACAN CCT- 20EEX0001N", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5 OCHO PUNTO CINCO", periodo: "21-07-2022 al 15-08-2024", estatus: "VALIDO", timbrado: "2024-08-25 16:20:11" },
-    "CBG37003910025510": { nombre: "CESAR FRANCISCO ALAMILLA ALTAMIRANO",curp:"AAAC980226HJCLLS07", matricula: "DG-1701M960101", emisor: "PREPARATORIA ABIERTA DE JALISCO", plantel: "LAGOS DE MORENO CCT-14EEX0001C", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5 OCHO PUNTO CINCO", periodo: "21-07-2023 al 15-08-2025", estatus: "VALIDO", timbrado: "2025-08-25 16:20:11" },
-    "CBG376039125111": { nombre: "ADRIANA TELLO VAZQUEZ",curp "TEVA830203MJCLZD01", matricula: "DG-1702R950202", emisor: "PREPARATORIA ABIERTA DE BAJA CALIFORNIA SUR", plantel: "LOS CABOS CCT-03EEX0001Z", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5 OCHO PUNTO CINCO", periodo: "21-07-2023 al 15-07-2025", estatus: "VALIDO", timbrado: "2025-08-25 16:20:11" },
-    "CBG376039125211": { nombre: "...", matricula: "1703M940303", emisor: "DIRECCION GENERAL DE BACHILLERATO DEL ESTADO DE COAHUILA", plantel: "14EEX0001C", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-09-25 16:20:11" },
+    "CBG37603910025517": { nombre: "CESAR FRANCISCO ALAMILLA ALTAMIRANO",curp:"AAAC980226HJCLLS07", matricula: "DG-1701M960101", emisor: "PREPARATORIA ABIERTA DE JALISCO", plantel: "LAGOS DE MORENO CCT-14EEX0001C", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5 OCHO PUNTO CINCO", periodo: "21-07-2023 al 15-08-2025", estatus: "VALIDO", timbrado: "2025-08-25 16:20:11" },
+    "CBG376039125111": { nombre: "..", matricula: "1702R950202", emisor: "DIRECCION GENERAL DE BACHILLERATO DEL ESTADO DE JALISCO", plantel: "14EEX0001C", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-08-29 16:20:11" },
+    "CBG376039125211": { nombre: "CECILIA GUADALUPE ANGUIANO LEDEZMA", matricula: "1703M940303", emisor: "DIRECCION GENERAL DE BACHILLERATO DEL ESTADO DE COAHUILA", plantel: "14EEX0001C", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-09-25 16:20:11" },
     "CBG376039125311": { nombre: "JOSE VALENCIA GARZON", matricula: "1704R930404", emisor: "DIRECCION GENERAL DE BACHILLERATO ESTADO DE MEXICO", plantel: "09DEX0004P", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-08-29 16:20:11" },
     "CBG376039125411": { nombre: "ODILON OLIVAREZ PIZANO", matricula: "1705M920505", emisor: "DIRECCIÓN GENERAL DE BACHILLERATO DEL ESTADO DE COLIMA", plantel: "06EEX0001U", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.6", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-09-25 17:00:11" },
     "CBG376039125011": { nombre: "WILVER ERNESTO GONZALEZ CASTRO", matricula: "1706R910606", emisor: "DIRECCION GENERAL DE BACHILLERATO DEL ESTADO DE COLIMA", plantel: "06EEX0001U", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.6", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-09-25 18:43:22" },
@@ -163,6 +163,81 @@ const baseDatos = {
 
   
 };
+
+
+// Exportar base de datos para uso en validador.js
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = baseDatos;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

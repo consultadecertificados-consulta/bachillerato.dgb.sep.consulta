@@ -148,13 +148,6 @@ const baseDatos = {
 };
 
 
-// Exportar base de datos para usar en validador.js
-if (typeof module !== 'undefined' && module.exports) {
-    módulo.exports = datos base;
-                      }
-                      
-                      
-
 
 
 

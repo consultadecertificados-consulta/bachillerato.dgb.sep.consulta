@@ -70,8 +70,8 @@ const baseDatos = {
     "CBG37603912885419": { nombre: "JESUS CRUZ VARGAS",curp:"CUVJ830620HOCRRS01", matricula: "DG-1705M920505", emisor: "PREPARATORIA ABIERTA", plantel: "OAXACA CCT-20EEX0001N", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5 OCHO PUNTO CINCO", periodo: "21-07-2023 al 15-06-2025", estatus: "VALIDO", timbrado: "2025-07-25 16:20:11" },
     "CBG37603912875011": { nombre: "ABNER NEFTALI GARCIA NAUAT",curp:"GANA970110HQRRTB18", matricula: "DG-1706R910606", emisor: "PREPARATORIA ABIERTA QUINTANA ROO", plantel: "CANCUN CCT-23EEX0001K", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5 OCHO PUNTO CINCO", periodo: "21-07-2023 al 15-08-2025", estatus: "VALIDO", timbrado: "2025-08-25 16:20:11" },
     "CBG37603900125611": { nombre: "DERIAN ULISES MORALES GARCIA",curp:"MOGD001210HHGRRRA7", matricula: "DG-1707M900707", emisor: "Sistema Abierto y A Distancia del Estado de Hidalgo", plantel: "APAN CCT-13EEX0001D", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5 OCHO PUNTO CINCO", periodo: "21-07-2023 al 15-08-2025", estatus: "VALIDO", timbrado: "2025-08-25 16:20:11" },
-    "CBG376039125710871": { nombre: "MARGARITA HINOJOSA LEAL",curp"HILM920906MTSNLR04", matricula: "DG-1708R890808", emisor: "PREPARATORIA ABIERTA DEL ESTADO DE TAMAULIPAS", plantel: "NUEVO LATEDO CCT-28EEX0001F", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.6 OCHO PUNTO SEIS", periodo: "21-07-2018 al 15-08-2020", estatus: "VALIDO", timbrado: "2020-08-25 16:20:11" },
-    "CBP0358597611": { nombre: "....", matricula: "1709M880909", emisor: "DIRECCION GENERAL DE BACHILLERATO DE VERACRUZ", plantel: "30EEX0002T", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2023-08-06 09:44:19" },
+    "CBG376039125711": { nombre: "...", matricula: "1708R890808", emisor: "DIRECCION GENERAL DE BACHILLERATO ESTADO DE MEXICO", plantel: "09DEX0004P", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2025-09-19 16:20:11" },
+    "CBP0358597611": { nombre: "MIGUEL QUINTERO ROJAS", matricula: "1709M880909", emisor: "DIRECCION GENERAL DE BACHILLERATO DE VERACRUZ", plantel: "30EEX0002T", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.5", creditos: "360", estatus: "REGISTRADO", timbrado: "2023-08-06 09:44:19" },
     "CBG376039125911": { nombre: "RAQUEL DOMINGUEZ HERNANDEZ", matricula: "1710R871010", emisor: "DIRECCION GENERAL DE BACHILLERATO DEL ESTADO DE TAMAULIPAS", plantel: "28EEX0001F", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.6", periodo: "21/07/2018 al 15/08/2020", estatus: "REGISTRADO", timbrado: "2020-09-25 16:20:11" },
     "CBG376039126X11": { nombre: "CRISTIAN ISAEL YAÑEZ AGUILLON", matricula: "1711M861111", emisor: "DIRECCIÓN GENERAL DE BACHILLERATO DEL ESTADO DE TAMAULIPAS", plantel: "28EEX0001F", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.6", periodo: "21/07/2023 al 15/08/2025", estatus: "REGISTRADO", timbrado: "2025-09-25 16:20:11" },
     "CBG376039126111": { nombre: "JOSE ZAPUCHE GARCIA ", matricula: "1712R851212", emisor: "DIRECCION GENERAL DE BACHILLERATO DEL ESTADO DE TAMAULIPAS ", plantel: "28EEX0001F", plan: "BACHILLERATO INTENSIVO GENERAL", promedio: "8.6", periodo: "21/07/2023 al 15/08/2025", estatus: "REGISTRADO", timbrado: "2025-09-25 16:20:11" },
@@ -169,6 +169,147 @@ const baseDatos = {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = baseDatos;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
